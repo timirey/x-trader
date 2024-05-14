@@ -1,7 +1,6 @@
 name: PHP Linting (Pint)
 
 on:
-  workflow_dispatch:
   push:
     branches: 
       - main
@@ -21,7 +20,7 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        php: [8.2, 8.3]
+        php: [8.2]
 
     name: PHP ${{ matrix.php }}
     
@@ -52,10 +51,4 @@ jobs:
          run: chmod -R 777 storage bootstrap/cache
       
        - name: Launch Pint inspection
-         run: vendor/bin/pint
- 
-       - name: Commit changes
-         uses: stefanzweifel/git-auto-commit-action@v4
-         with:
-           commit_message: "Job: PHP Linting (Pint)"
-           skip_fetch: true
+         run: vendor/bin/pint --test
