@@ -174,7 +174,7 @@ use Illuminate\Support\Facades\Facade;
 class Indicator extends Facade
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected static function getFacadeAccessor(): string
     {

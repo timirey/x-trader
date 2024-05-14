@@ -7,17 +7,11 @@ use BadFunctionCallException;
 
 /**
  * Class Trader
- * @package Laratrade\Trader
- *
- * phpcs:disable Generic.Files.LineLength
- * phpcs:disable PSR1.Methods.CamelCapsMethodName
  */
 class IndicatorService implements IndicatorContract
 {
     /**
      * The error messages.
-     *
-     * @var array
      */
     protected static array $errors = [
         self::ERR_LIB_NOT_INITIALIZE => 'Library not initialized',
@@ -45,8 +39,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the arc cosine for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function acos(array $real): array
@@ -61,11 +54,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Chaikin A/D Line.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param array $volume Volume traded, array of real values.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  array  $volume  Volume traded, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function ad(array $high, array $low, array $close, array $volume): array
@@ -82,9 +74,8 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the vector addition of real0 to real1 and returns the resulting vector.
      *
-     * @param array $real0 Array of real values.
-     * @param array $real1 Array of real values.
-     *
+     * @param  array  $real0  Array of real values.
+     * @param  array  $real1  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function add(array $real0, array $real1): array
@@ -99,13 +90,12 @@ class IndicatorService implements IndicatorContract
     /**
      * Chaikin A/D Oscillator.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param array $volume Volume traded, array of real values.
-     * @param int $fastPeriod Number of period for the fast MA. Valid range from 2 to 100000.
-     * @param int $slowPeriod Number of period for the slow MA. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  array  $volume  Volume traded, array of real values.
+     * @param  int  $fastPeriod  Number of period for the fast MA. Valid range from 2 to 100000.
+     * @param  int  $slowPeriod  Number of period for the slow MA. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function adosc(
@@ -113,10 +103,9 @@ class IndicatorService implements IndicatorContract
         array $low,
         array $close,
         array $volume,
-        int   $fastPeriod = 3,
-        int   $slowPeriod = 10
-    ): array
-    {
+        int $fastPeriod = 3,
+        int $slowPeriod = 10
+    ): array {
         $result = trader_adosc($high, $low, $close, $volume, $fastPeriod, $slowPeriod);
 
         $this->handleErrors();
@@ -127,11 +116,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Average Directional Movement Index.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function adx(array $high, array $low, array $close, int $timePeriod = 14): array
@@ -146,11 +134,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Average Directional Movement Index Rating.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function adxr(array $high, array $low, array $close, int $timePeriod = 14): array
@@ -165,11 +152,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Absolute Price Oscillator.
      *
-     * @param array $real Array of real values.
-     * @param int $fastPeriod Number of period for the fast MA. Valid range from 2 to 100000.
-     * @param int $slowPeriod Number of period for the slow MA. Valid range from 2 to 100000.
-     * @param int $mAType Type of Moving Average. MA_TYPE_* series of constants should be used.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $fastPeriod  Number of period for the fast MA. Valid range from 2 to 100000.
+     * @param  int  $slowPeriod  Number of period for the slow MA. Valid range from 2 to 100000.
+     * @param  int  $mAType  Type of Moving Average. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
     public function apo(array $real, int $fastPeriod = 12, int $slowPeriod = 26, int $mAType = 0): array
@@ -184,10 +170,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Aroon.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function aroon(array $high, array $low, int $timePeriod = 14): array
@@ -202,10 +187,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Aroon Oscillator.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function aroonosc(array $high, array $low, int $timePeriod = 14): array
@@ -220,8 +204,7 @@ class IndicatorService implements IndicatorContract
     /**
      * Vector Trigonometric ASin.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function asin(array $real): array
@@ -236,8 +219,7 @@ class IndicatorService implements IndicatorContract
     /**
      * Vector Trigonometric ATan.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function atan(array $real): array
@@ -252,11 +234,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Average True Range.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function atr(array $high, array $low, array $close, int $timePeriod = 14): array
@@ -271,11 +252,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Average Price.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function avgprice(array $open, array $high, array $low, array $close): array
@@ -290,22 +270,20 @@ class IndicatorService implements IndicatorContract
     /**
      * Bollinger Bands.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     * @param float $nbDevUp Deviation multiplier for upper band. Valid range from REAL_MIN to REAL_MAX.
-     * @param float $nbDevDn Deviation multiplier for lower band. Valid range from REAL_MIN to REAL_MAX.
-     * @param int $mAType Type of Moving Average. MA_TYPE_* series of constants should be used.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
+     * @param  float  $nbDevUp  Deviation multiplier for upper band. Valid range from REAL_MIN to REAL_MAX.
+     * @param  float  $nbDevDn  Deviation multiplier for lower band. Valid range from REAL_MIN to REAL_MAX.
+     * @param  int  $mAType  Type of Moving Average. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
     public function bbands(
         array $real,
-        int   $timePeriod = 5,
+        int $timePeriod = 5,
         float $nbDevUp = 2.0,
         float $nbDevDn = 2.0,
-        int   $mAType = 0
-    ): array
-    {
+        int $mAType = 0
+    ): array {
         $result = trader_bbands($real, $timePeriod, $nbDevUp, $nbDevDn, $mAType);
 
         $this->handleErrors();
@@ -316,10 +294,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Beta.
      *
-     * @param array $real0 Array of real values.
-     * @param array $real1 Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real0  Array of real values.
+     * @param  array  $real1  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function beta(array $real0, array $real1, int $timePeriod = 5): array
@@ -334,11 +311,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Balance Of Power.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function bop(array $open, array $high, array $low, array $close): array
@@ -353,14 +329,13 @@ class IndicatorService implements IndicatorContract
     /**
      * Commodity Channel Index.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function cci(array $high, array $low, array $close, int $timePeriod = null): array
+    public function cci(array $high, array $low, array $close, ?int $timePeriod = null): array
     {
         $result = trader_cci($high, $low, $close, $timePeriod);
 
@@ -372,11 +347,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Two Crows.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdl2crows(array $open, array $high, array $low, array $close): array
@@ -391,11 +365,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Three Black Crows.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdl3blackcrows(array $open, array $high, array $low, array $close): array
@@ -410,11 +383,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Three Inside Up/Down.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdl3inside(array $open, array $high, array $low, array $close): array
@@ -429,11 +401,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Three-Line Strike
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdl3linestrike(array $open, array $high, array $low, array $close): array
@@ -448,11 +419,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Three Outside Up/Down.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdl3outside(array $open, array $high, array $low, array $close): array
@@ -467,11 +437,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Three Stars In The South.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdl3starsinsouth(array $open, array $high, array $low, array $close): array
@@ -486,11 +455,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Three Advancing White Soldiers.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdl3whitesoldiers(array $open, array $high, array $low, array $close): array
@@ -505,12 +473,11 @@ class IndicatorService implements IndicatorContract
     /**
      * Abandoned Baby.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param float $penetration Percentage of penetration of a candle within another candle.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  float  $penetration  Percentage of penetration of a candle within another candle.
      * @return array Returns an array with calculated data.
      */
     public function cdlabandonedbaby(
@@ -519,8 +486,7 @@ class IndicatorService implements IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.3
-    ): array
-    {
+    ): array {
         $result = trader_cdlabandonedbaby($open, $high, $low, $close, $penetration);
 
         $this->handleErrors();
@@ -531,11 +497,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Advance Block.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdladvanceblock(array $open, array $high, array $low, array $close): array
@@ -550,11 +515,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Belt-hold.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlbelthold(array $open, array $high, array $low, array $close): array
@@ -569,11 +533,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Breakaway.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlbreakaway(array $open, array $high, array $low, array $close): array
@@ -588,11 +551,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Closing Marubozu.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlclosingmarubozu(array $open, array $high, array $low, array $close): array
@@ -607,11 +569,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Concealing Baby Swallow.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlconcealbabyswall(array $open, array $high, array $low, array $close): array
@@ -626,11 +587,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Counterattack.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlcounterattack(array $open, array $high, array $low, array $close): array
@@ -645,12 +605,11 @@ class IndicatorService implements IndicatorContract
     /**
      * Dark Cloud Cover.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param float $penetration Percentage of penetration of a candle within another candle.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  float  $penetration  Percentage of penetration of a candle within another candle.
      * @return array Returns an array with calculated data.
      */
     public function cdldarkcloudcover(
@@ -659,8 +618,7 @@ class IndicatorService implements IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.5
-    ): array
-    {
+    ): array {
         $result = trader_cdldarkcloudcover($open, $high, $low, $close, $penetration);
 
         $this->handleErrors();
@@ -671,11 +629,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Doji.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdldoji(array $open, array $high, array $low, array $close): array
@@ -690,11 +647,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Doji Star.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdldojistar(array $open, array $high, array $low, array $close): array
@@ -709,11 +665,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Dragonfly Doji.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdldragonflydoji(array $open, array $high, array $low, array $close): array
@@ -728,11 +683,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Engulfing Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlengulfing(array $open, array $high, array $low, array $close): array
@@ -747,12 +701,11 @@ class IndicatorService implements IndicatorContract
     /**
      * Evening Doji Star.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param float $penetration Percentage of penetration of a candle within another candle.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  float  $penetration  Percentage of penetration of a candle within another candle.
      * @return array Returns an array with calculated data.
      */
     public function cdleveningdojistar(
@@ -761,8 +714,7 @@ class IndicatorService implements IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.3
-    ): array
-    {
+    ): array {
         $result = trader_cdleveningdojistar($open, $high, $low, $close, $penetration);
 
         $this->handleErrors();
@@ -773,12 +725,11 @@ class IndicatorService implements IndicatorContract
     /**
      * Evening Star.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param float $penetration [OPTIONAL] [DEFAULT 0.3] Percentage of penetration of a candle within another candle.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  float  $penetration  [OPTIONAL] [DEFAULT 0.3] Percentage of penetration of a candle within another candle.
      * @return array Returns an array with calculated data.
      */
     public function cdleveningstar(
@@ -787,8 +738,7 @@ class IndicatorService implements IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.3
-    ): array
-    {
+    ): array {
         $result = trader_cdleveningstar($open, $high, $low, $close, $penetration);
 
         $this->handleErrors();
@@ -799,11 +749,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Up/Down-gap side-by-side white lines.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlgapsidesidewhite(array $open, array $high, array $low, array $close): array
@@ -818,11 +767,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Gravestone Doji.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlgravestonedoji(array $open, array $high, array $low, array $close): array
@@ -837,11 +785,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Hammer.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlhammer(array $open, array $high, array $low, array $close): array
@@ -856,11 +803,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Hanging Man.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlhangingman(array $open, array $high, array $low, array $close): array
@@ -875,11 +821,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Harami Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlharami(array $open, array $high, array $low, array $close): array
@@ -894,11 +839,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Harami Cross Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlharamicross(array $open, array $high, array $low, array $close): array
@@ -913,11 +857,10 @@ class IndicatorService implements IndicatorContract
     /**
      * High-Wave Candle.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlhighwave(array $open, array $high, array $low, array $close): array
@@ -932,11 +875,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Hikkake Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlhikkake(array $open, array $high, array $low, array $close): array
@@ -951,11 +893,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Modified Hikkake Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlhikkakemod(array $open, array $high, array $low, array $close): array
@@ -970,11 +911,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Homing Pigeon.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlhomingpigeon(array $open, array $high, array $low, array $close): array
@@ -989,11 +929,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Identical Three Crows.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlidentical3crows(array $open, array $high, array $low, array $close): array
@@ -1008,11 +947,10 @@ class IndicatorService implements IndicatorContract
     /**
      * In-Neck Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlinneck(array $open, array $high, array $low, array $close): array
@@ -1027,11 +965,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Inverted Hammer.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlinvertedhammer(array $open, array $high, array $low, array $close): array
@@ -1046,11 +983,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Kicking.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlkicking(array $open, array $high, array $low, array $close): array
@@ -1065,11 +1001,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Kicking - bull/bear determined by the longer marubozu.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlkickingbylength(array $open, array $high, array $low, array $close): array
@@ -1084,11 +1019,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Ladder Bottom.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlladderbottom(array $open, array $high, array $low, array $close): array
@@ -1103,11 +1037,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Long Legged Doji.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdllongleggeddoji(array $open, array $high, array $low, array $close): array
@@ -1122,11 +1055,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Long Line Candle.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdllongline(array $open, array $high, array $low, array $close): array
@@ -1141,11 +1073,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Marubozu.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlmarubozu(array $open, array $high, array $low, array $close): array
@@ -1160,11 +1091,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Matching Low.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlmatchinglow(array $open, array $high, array $low, array $close): array
@@ -1179,12 +1109,11 @@ class IndicatorService implements IndicatorContract
     /**
      * Mat Hold.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param float $penetration Percentage of penetration of a candle within another candle.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  float  $penetration  Percentage of penetration of a candle within another candle.
      * @return array Returns an array with calculated data.
      */
     public function cdlmathold(
@@ -1193,8 +1122,7 @@ class IndicatorService implements IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.5
-    ): array
-    {
+    ): array {
         $result = trader_cdlmathold($open, $high, $low, $close, $penetration);
 
         $this->handleErrors();
@@ -1205,12 +1133,11 @@ class IndicatorService implements IndicatorContract
     /**
      * Morning Doji Star.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param float $penetration [OPTIONAL] [DEFAULT 0.3] Percentage of penetration of a candle within another candle.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  float  $penetration  [OPTIONAL] [DEFAULT 0.3] Percentage of penetration of a candle within another candle.
      * @return array Returns an array with calculated data.
      */
     public function cdlmorningdojistar(
@@ -1219,8 +1146,7 @@ class IndicatorService implements IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.3
-    ): array
-    {
+    ): array {
         $result = trader_cdlmorningdojistar($open, $high, $low, $close, $penetration);
 
         $this->handleErrors();
@@ -1231,12 +1157,11 @@ class IndicatorService implements IndicatorContract
     /**
      * Morning Star.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param float $penetration Percentage of penetration of a candle within another candle.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  float  $penetration  Percentage of penetration of a candle within another candle.
      * @return array Returns an array with calculated data.
      */
     public function cdlmorningstar(
@@ -1245,8 +1170,7 @@ class IndicatorService implements IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.3
-    ): array
-    {
+    ): array {
         $result = trader_cdlmorningstar($open, $high, $low, $close, $penetration);
 
         $this->handleErrors();
@@ -1257,11 +1181,10 @@ class IndicatorService implements IndicatorContract
     /**
      * On-Neck Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlonneck(array $open, array $high, array $low, array $close): array
@@ -1276,11 +1199,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Piercing Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlpiercing(array $open, array $high, array $low, array $close): array
@@ -1295,11 +1217,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Rickshaw Man.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlrickshawman(array $open, array $high, array $low, array $close): array
@@ -1314,11 +1235,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Rising/Falling Three Methods.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlrisefall3methods(array $open, array $high, array $low, array $close): array
@@ -1333,11 +1253,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Separating Lines.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlseparatinglines(array $open, array $high, array $low, array $close): array
@@ -1352,11 +1271,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Shooting Star.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlshootingstar(array $open, array $high, array $low, array $close): array
@@ -1371,11 +1289,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Short Line Candle.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlshortline(array $open, array $high, array $low, array $close): array
@@ -1390,11 +1307,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Spinning Top.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlspinningtop(array $open, array $high, array $low, array $close): array
@@ -1409,11 +1325,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Stalled Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlstalledpattern(array $open, array $high, array $low, array $close): array
@@ -1428,11 +1343,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Stick Sandwich.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlsticksandwich(array $open, array $high, array $low, array $close): array
@@ -1447,11 +1361,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Takuri (Dragonfly Doji with very long lower shadow).
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdltakuri(array $open, array $high, array $low, array $close): array
@@ -1466,11 +1379,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Tasuki Gap.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdltasukigap(array $open, array $high, array $low, array $close): array
@@ -1485,11 +1397,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Thrusting Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlthrusting(array $open, array $high, array $low, array $close): array
@@ -1504,11 +1415,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Tristar Pattern.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdltristar(array $open, array $high, array $low, array $close): array
@@ -1523,11 +1433,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Unique 3 River.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlunique3river(array $open, array $high, array $low, array $close): array
@@ -1542,11 +1451,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Upside Gap Two Crows.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlupsidegap2crows(array $open, array $high, array $low, array $close): array
@@ -1561,11 +1469,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Upside/Downside Gap Three Methods.
      *
-     * @param array $open Opening price, array of real values.
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cdlxsidegap3methods(array $open, array $high, array $low, array $close): array
@@ -1582,8 +1489,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the next highest integer for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function ceil(array $real): array
@@ -1598,9 +1504,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Chande Momentum Oscillator.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function cmo(array $real, int $timePeriod = 14): array
@@ -1615,10 +1520,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Pearson's Correlation Coefficient (r).
      *
-     * @param array $real0 Array of real values.
-     * @param array $real1 Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real0  Array of real values.
+     * @param  array  $real1  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function correl(array $real0, array $real1, int $timePeriod = 30): array
@@ -1635,8 +1539,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the cosine for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cos(array $real): array
@@ -1653,8 +1556,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the hyperbolic cosine for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function cosh(array $real): array
@@ -1669,9 +1571,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Double Exponential Moving Average.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function dema(array $real, int $timePeriod = 30): array
@@ -1688,9 +1589,8 @@ class IndicatorService implements IndicatorContract
      *
      * Divides each value from real0 by the corresponding value from real1 and returns the resulting array.
      *
-     * @param array $real0 Array of real values.
-     * @param array $real1 Array of real values.
-     *
+     * @param  array  $real0  Array of real values.
+     * @param  array  $real1  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function div(array $real0, array $real1): array
@@ -1705,12 +1605,11 @@ class IndicatorService implements IndicatorContract
     /**
      * Directional Movement Index.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
-     * @return array  Returns an array with calculated data.
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
+     * @return array Returns an array with calculated data.
      */
     public function dx(array $high, array $low, array $close, int $timePeriod = 14): array
     {
@@ -1724,9 +1623,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Exponential Moving Average.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function ema(array $real, int $timePeriod = 30): array
@@ -1755,8 +1653,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates e raised to the power of each value in real. Returns an array with the calculated data.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function exp(array $real): array
@@ -1773,8 +1670,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the next lowest integer for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function floor(array $real): array
@@ -1803,8 +1699,7 @@ class IndicatorService implements IndicatorContract
      *
      * Get unstable period factor for a particular function.
      *
-     * @param int $functionId Function ID the factor to be read for. FUNC_UNST_* series of constants should be used.
-     *
+     * @param  int  $functionId  Function ID the factor to be read for. FUNC_UNST_* series of constants should be used.
      * @return int Returns the unstable period factor for the corresponding function.
      */
     public function get_unstable_period(int $functionId): int
@@ -1815,8 +1710,7 @@ class IndicatorService implements IndicatorContract
     /**
      * Hilbert Transform - Dominant Cycle Period.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function ht_dcperiod(array $real): array
@@ -1831,8 +1725,7 @@ class IndicatorService implements IndicatorContract
     /**
      * Hilbert Transform - Dominant Cycle Phase.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function ht_dcphase(array $real): array
@@ -1847,8 +1740,7 @@ class IndicatorService implements IndicatorContract
     /**
      * Hilbert Transform - Phasor Components.
      *
-     * @param array $open Opening price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function ht_phasor(array $open): array
@@ -1863,8 +1755,7 @@ class IndicatorService implements IndicatorContract
     /**
      * Hilbert Transform - Phasor Components.
      *
-     * @param array $open Opening price, array of real values.
-     *
+     * @param  array  $open  Opening price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function ht_sine(array $open): array
@@ -1879,8 +1770,7 @@ class IndicatorService implements IndicatorContract
     /**
      * Hilbert Transform - Instantaneous Trendline.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function ht_trendline(array $real): array
@@ -1895,8 +1785,7 @@ class IndicatorService implements IndicatorContract
     /**
      * Hilbert Transform - Trend vs Cycle Mode.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function ht_trendmode(array $real): array
@@ -1911,9 +1800,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Kaufman Adaptive Moving Average.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function kama(array $real, int $timePeriod = 30): array
@@ -1928,9 +1816,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Linear Regression Angle.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function linearreg_angle(array $real, int $timePeriod = 14): array
@@ -1945,9 +1832,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Linear Regression Angle.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function linearreg_intercept(array $real, int $timePeriod = 14): array
@@ -1962,9 +1848,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Linear Regression Slope.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function linearreg_slope(array $real, int $timePeriod = 14): array
@@ -1979,9 +1864,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Linear Regression.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function linearreg(array $real, int $timePeriod = 14): array
@@ -1998,8 +1882,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the natural logarithm for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function ln(array $real): array
@@ -2016,8 +1899,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the base-10 logarithm for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function log10(array $real): array
@@ -2032,10 +1914,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Moving average.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     * @param int $mAType Type of Moving Average. MA_TYPE_* series of constants should be used.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
+     * @param  int  $mAType  Type of Moving Average. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
     public function ma(array $real, int $timePeriod = 30, int $mAType = 0): array
@@ -2050,20 +1931,18 @@ class IndicatorService implements IndicatorContract
     /**
      * Moving Average Convergence/Divergence.
      *
-     * @param array $real Array of real values.
-     * @param int $fastPeriod Number of period for the fast MA. Valid range from 2 to 100000.
-     * @param int $slowPeriod Number of period for the slow MA. Valid range from 2 to 100000.
-     * @param int $signalPeriod Smoothing for the signal line (nb of period). Valid range from 1 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $fastPeriod  Number of period for the fast MA. Valid range from 2 to 100000.
+     * @param  int  $slowPeriod  Number of period for the slow MA. Valid range from 2 to 100000.
+     * @param  int  $signalPeriod  Smoothing for the signal line (nb of period). Valid range from 1 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function macd(
         array $real,
-        int   $fastPeriod = 12,
-        int   $slowPeriod = 26,
-        int   $signalPeriod = 9
-    ): array
-    {
+        int $fastPeriod = 12,
+        int $slowPeriod = 26,
+        int $signalPeriod = 9
+    ): array {
         $result = trader_macd($real, $fastPeriod, $slowPeriod, $signalPeriod);
 
         $this->handleErrors();
@@ -2074,24 +1953,22 @@ class IndicatorService implements IndicatorContract
     /**
      * Moving Average Convergence/Divergence with controllable Moving Average type.
      *
-     * @param array $real Array of real values.
-     * @param int $fastPeriod Number of period for the fast MA. Valid range from 2 to 100000.
-     * @param int $fastMAType Type of Moving Average for fast MA. MA_TYPE_* series of constants should be used.
-     * @param int $slowPeriod Number of period for the slow MA. Valid range from 2 to 100000.
-     * @param int $slowMAType Type of Moving Average for fast MA. MA_TYPE_* series of constants should be used.
-     * @param int $signalPeriod Smoothing for the signal line (nb of period). Valid range from 1 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $fastPeriod  Number of period for the fast MA. Valid range from 2 to 100000.
+     * @param  int  $fastMAType  Type of Moving Average for fast MA. MA_TYPE_* series of constants should be used.
+     * @param  int  $slowPeriod  Number of period for the slow MA. Valid range from 2 to 100000.
+     * @param  int  $slowMAType  Type of Moving Average for fast MA. MA_TYPE_* series of constants should be used.
+     * @param  int  $signalPeriod  Smoothing for the signal line (nb of period). Valid range from 1 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function macdext(
         array $real,
-        int   $fastPeriod = 12,
-        int   $fastMAType = 0,
-        int   $slowPeriod = 26,
-        int   $slowMAType = 0,
-        int   $signalPeriod = 9
-    ): array
-    {
+        int $fastPeriod = 12,
+        int $fastMAType = 0,
+        int $slowPeriod = 26,
+        int $slowMAType = 0,
+        int $signalPeriod = 9
+    ): array {
         $result = trader_macdext($real, $fastPeriod, $fastMAType, $slowPeriod, $slowMAType, $signalPeriod);
 
         $this->handleErrors();
@@ -2102,9 +1979,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Moving Average Convergence/Divergence Fix 12/26.
      *
-     * @param array $real Array of real values.
-     * @param int $signalPeriod Smoothing for the signal line (nb of period). Valid range from 1 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $signalPeriod  Smoothing for the signal line (nb of period). Valid range from 1 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function macdfix(array $real, int $signalPeriod = 9): array
@@ -2119,10 +1995,9 @@ class IndicatorService implements IndicatorContract
     /**
      * MESA Adaptive Moving Average.
      *
-     * @param array $real Array of real values.
-     * @param float $fastLimit Upper limit use in the adaptive algorithm. Valid range from 0.01 to 0.99.
-     * @param float $slowLimit Lower limit use in the adaptive algorithm. Valid range from 0.01 to 0.99.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  float  $fastLimit  Upper limit use in the adaptive algorithm. Valid range from 0.01 to 0.99.
+     * @param  float  $slowLimit  Lower limit use in the adaptive algorithm. Valid range from 0.01 to 0.99.
      * @return array Returns an array with calculated data.
      */
     public function mama(array $real, float $fastLimit = 0.5, float $slowLimit = 0.05): array
@@ -2137,22 +2012,20 @@ class IndicatorService implements IndicatorContract
     /**
      * Moving average with variable period
      *
-     * @param array $real Array of real values.
-     * @param array $periods Array of real values.
-     * @param int $minPeriod Value less than minimum will be changed to Minimum period. Valid range from 2 to 100000
-     * @param int $maxPeriod Value higher than maximum will be changed to Maximum period. Valid range from 2 to 100000
-     * @param int $mAType Type of Moving Average. MA_TYPE_* series of constants should be used.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  array  $periods  Array of real values.
+     * @param  int  $minPeriod  Value less than minimum will be changed to Minimum period. Valid range from 2 to 100000
+     * @param  int  $maxPeriod  Value higher than maximum will be changed to Maximum period. Valid range from 2 to 100000
+     * @param  int  $mAType  Type of Moving Average. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
     public function mavp(
         array $real,
         array $periods,
-        int   $minPeriod = 2,
-        int   $maxPeriod = 30,
-        int   $mAType = 0
-    ): array
-    {
+        int $minPeriod = 2,
+        int $maxPeriod = 30,
+        int $mAType = 0
+    ): array {
         $result = trader_mavp($real, $periods, $minPeriod, $maxPeriod, $mAType);
 
         $this->handleErrors();
@@ -2163,9 +2036,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Highest value over a specified period.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function max(array $real, int $timePeriod = 30): array
@@ -2180,9 +2052,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Index of highest value over a specified period
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function maxindex(array $real, int $timePeriod = 30): array
@@ -2197,9 +2068,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Median Price.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function medprice(array $high, array $low): array
@@ -2214,12 +2084,11 @@ class IndicatorService implements IndicatorContract
     /**
      * Money Flow Index.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param array $volume Volume traded, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  array  $volume  Volume traded, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function mfi(array $high, array $low, array $close, array $volume, int $timePeriod = 14): array
@@ -2234,9 +2103,8 @@ class IndicatorService implements IndicatorContract
     /**
      * MidPoint over period.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function midpoint(array $real, int $timePeriod = 14): array
@@ -2251,10 +2119,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Midpoint Price over period.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function midprice(array $high, array $low, int $timePeriod = 14): array
@@ -2269,9 +2136,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Lowest value over a specified period.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function min(array $real, int $timePeriod = 30): array
@@ -2286,9 +2152,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Index of lowest value over a specified period.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function minindex(array $real, int $timePeriod = 30): array
@@ -2303,9 +2168,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Lowest and highest values over a specified period.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function minmax(array $real, int $timePeriod = 30): array
@@ -2320,9 +2184,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Indexes of lowest and highest values over a specified period.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function minmaxindex(array $real, int $timePeriod = 30): array
@@ -2337,11 +2200,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Minus Directional Indicator.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function minus_di(array $high, array $low, array $close, int $timePeriod = 14): array
@@ -2356,10 +2218,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Minus Directional Movement.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function minus_dm(array $high, array $low, int $timePeriod = 14): array
@@ -2374,9 +2235,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Momentum.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function mom(array $real, int $timePeriod = 10): array
@@ -2393,9 +2253,8 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the vector dot product of real0 with real1 and returns the resulting vector.
      *
-     * @param array $real0 Array of real values.
-     * @param array $real1 Array of real values.
-     *
+     * @param  array  $real0  Array of real values.
+     * @param  array  $real1  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function mult(array $real0, array $real1): array
@@ -2410,11 +2269,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Normalized Average True Range.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function natr(array $high, array $low, array $close, int $timePeriod = 14): array
@@ -2429,9 +2287,8 @@ class IndicatorService implements IndicatorContract
     /**
      * On Balance Volume.
      *
-     * @param array $real Array of real values.
-     * @param array $volume Volume traded, array of real values.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  array  $volume  Volume traded, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function obv(array $real, array $volume): array
@@ -2446,11 +2303,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Plus Directional Indicator.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function plus_di(array $high, array $low, array $close, int $timePeriod = 14): array
@@ -2465,10 +2321,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Plus Directional Movement.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function plus_dm(array $high, array $low, int $timePeriod = 14): array
@@ -2483,11 +2338,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Percentage Price Oscillator.
      *
-     * @param array $real Array of real values.
-     * @param int $fastPeriod Number of period for the fast MA. Valid range from 2 to 100000.
-     * @param int $slowPeriod Number of period for the slow MA. Valid range from 2 to 100000.
-     * @param int $mAType Type of Moving Average. MA_TYPE_* series of constants should be used.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $fastPeriod  Number of period for the fast MA. Valid range from 2 to 100000.
+     * @param  int  $slowPeriod  Number of period for the slow MA. Valid range from 2 to 100000.
+     * @param  int  $mAType  Type of Moving Average. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
     public function ppo(array $real, int $fastPeriod = 12, int $slowPeriod = 26, int $mAType = 0): array
@@ -2502,9 +2356,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Rate of change : ((price/prevPrice)-1)*100.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function roc(array $real, int $timePeriod = 10): array
@@ -2519,9 +2372,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Rate of change Percentage: (price-prevPrice)/prevPrice.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function rocp(array $real, int $timePeriod = 10): array
@@ -2536,9 +2388,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Rate of change ratio 100 scale: (price/prevPrice)*100.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function rocr100(array $real, int $timePeriod = 10): array
@@ -2553,9 +2404,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Rate of change ratio: (price/prevPrice).
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function rocr(array $real, int $timePeriod = 10): array
@@ -2570,9 +2420,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Relative Strength Index.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function rsi(array $real, int $timePeriod = 14): array
@@ -2587,11 +2436,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Parabolic SAR.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param float $acceleration Acceleration Factor used up to the Maximum value. Valid range from 0 to REAL_MAX.
-     * @param float $maximum Acceleration Factor Maximum value. Valid range from 0 to REAL_MAX.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  float  $acceleration  Acceleration Factor used up to the Maximum value. Valid range from 0 to REAL_MAX.
+     * @param  float  $maximum  Acceleration Factor Maximum value. Valid range from 0 to REAL_MAX.
      * @return array Returns an array with calculated data.
      */
     public function sar(array $high, array $low, float $acceleration = 0.02, float $maximum = 0.2): array
@@ -2606,17 +2454,16 @@ class IndicatorService implements IndicatorContract
     /**
      * Parabolic SAR - Extended.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param float $startValue Start value and direction. 0 for Auto, >0 for Long, <0 for Short. Valid range from REAL_MIN to REAL_MAX.
-     * @param float $offsetOnReverse Percent offset added/removed to initial stop on short/long reversal. Valid range from 0 to REAL_MAX.
-     * @param float $accelerationInitLong Acceleration Factor initial value for the Long direction. Valid range from 0 to REAL_MAX.
-     * @param float $accelerationLong Acceleration Factor for the Long direction. Valid range from 0 to REAL_MAX.
-     * @param float $accelerationMaxLong Acceleration Factor maximum value for the Long direction. Valid range from 0 to REAL_MAX.
-     * @param float $accelerationInitShort Acceleration Factor initial value for the Short direction. Valid range from 0 to REAL_MAX.
-     * @param float $accelerationShort Acceleration Factor for the Short direction. Valid range from 0 to REAL_MAX.
-     * @param float $accelerationMaxShort Acceleration Factor maximum value for the Short direction. Valid range from 0 to REAL_MAX.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  float  $startValue  Start value and direction. 0 for Auto, >0 for Long, <0 for Short. Valid range from REAL_MIN to REAL_MAX.
+     * @param  float  $offsetOnReverse  Percent offset added/removed to initial stop on short/long reversal. Valid range from 0 to REAL_MAX.
+     * @param  float  $accelerationInitLong  Acceleration Factor initial value for the Long direction. Valid range from 0 to REAL_MAX.
+     * @param  float  $accelerationLong  Acceleration Factor for the Long direction. Valid range from 0 to REAL_MAX.
+     * @param  float  $accelerationMaxLong  Acceleration Factor maximum value for the Long direction. Valid range from 0 to REAL_MAX.
+     * @param  float  $accelerationInitShort  Acceleration Factor initial value for the Short direction. Valid range from 0 to REAL_MAX.
+     * @param  float  $accelerationShort  Acceleration Factor for the Short direction. Valid range from 0 to REAL_MAX.
+     * @param  float  $accelerationMaxShort  Acceleration Factor maximum value for the Short direction. Valid range from 0 to REAL_MAX.
      * @return array Returns an array with calculated data.
      */
     public function sarext(
@@ -2630,8 +2477,7 @@ class IndicatorService implements IndicatorContract
         float $accelerationInitShort = 0.02,
         float $accelerationShort = 0.02,
         float $accelerationMaxShort = 0.2
-    ): array
-    {
+    ): array {
         $result = trader_sarext(
             $high,
             $low,
@@ -2655,7 +2501,7 @@ class IndicatorService implements IndicatorContract
      *
      * Set compatibility mode which will affect the way calculations are done by all the extension functions.
      *
-     * @param int $compatId Compatibility Id. COMPATIBILITY_* series of constants should be used.
+     * @param  int  $compatId  Compatibility Id. COMPATIBILITY_* series of constants should be used.
      */
     public function set_compat(int $compatId)
     {
@@ -2667,8 +2513,8 @@ class IndicatorService implements IndicatorContract
      *
      * Influences unstable period factor for functions, which are sensible to it. More information about unstable periods can be found on the » TA-Lib API documentation page.
      *
-     * @param int $functionId Function ID the factor should be set for. FUNC_UNST_* constant series can be used to affect the corresponding function.
-     * @param int $timePeriod Unstable period value.
+     * @param  int  $functionId  Function ID the factor should be set for. FUNC_UNST_* constant series can be used to affect the corresponding function.
+     * @param  int  $timePeriod  Unstable period value.
      */
     public function set_unstable_period(int $functionId, int $timePeriod)
     {
@@ -2680,8 +2526,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the sine for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function sin(array $real): array
@@ -2698,8 +2543,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the hyperbolic sine for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function sinh(array $real): array
@@ -2714,9 +2558,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Simple Moving Average.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function sma(array $real, int $timePeriod = 30): array
@@ -2733,8 +2576,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the square root of each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function sqrt(array $real): array
@@ -2749,10 +2591,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Standard Deviation.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     * @param float $nbDev Number of deviations
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
+     * @param  float  $nbDev  Number of deviations
      * @return array Returns an array with calculated data.
      */
     public function stddev(array $real, int $timePeriod = 5, float $nbDev = 1.0): array
@@ -2767,28 +2608,26 @@ class IndicatorService implements IndicatorContract
     /**
      * Stochastic.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Time period for building the Fast-K line. Valid range from 1 to 100000.
-     * @param int $fastK_Period Time period for building the Fast-K line. Valid range from 1 to 100000.
-     * @param int $slowK_Period Smoothing for making the Slow-K line. Valid range from 1 to 100000, usually set to 3.
-     * @param int $slowK_MAType Type of Moving Average for Slow-K. MA_TYPE_* series of constants should be used.
-     * @param int $slowD_Period Smoothing for making the Slow-D line. Valid range from 1 to 100000.
-     * @param int $slowD_MAType Type of Moving Average for Slow-D. MA_TYPE_* series of constants should be used.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Time period for building the Fast-K line. Valid range from 1 to 100000.
+     * @param  int  $fastK_Period  Time period for building the Fast-K line. Valid range from 1 to 100000.
+     * @param  int  $slowK_Period  Smoothing for making the Slow-K line. Valid range from 1 to 100000, usually set to 3.
+     * @param  int  $slowK_MAType  Type of Moving Average for Slow-K. MA_TYPE_* series of constants should be used.
+     * @param  int  $slowD_Period  Smoothing for making the Slow-D line. Valid range from 1 to 100000.
+     * @param  int  $slowD_MAType  Type of Moving Average for Slow-D. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
     public function stoch(
         array $high,
         array $low,
         array $close,
-        int   $fastK_Period = 5,
-        int   $slowK_Period = 3,
-        int   $slowK_MAType = 0,
-        int   $slowD_Period = 3,
-        int   $slowD_MAType = 0
-    ): array
-    {
+        int $fastK_Period = 5,
+        int $slowK_Period = 3,
+        int $slowK_MAType = 0,
+        int $slowD_Period = 3,
+        int $slowD_MAType = 0
+    ): array {
         $result = trader_stoch(
             $high,
             $low,
@@ -2808,24 +2647,22 @@ class IndicatorService implements IndicatorContract
     /**
      * Stochastic Fast.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Time period for building the Fast-K line. Valid range from 1 to 100000.
-     * @param int $fastK_Period Time period for building the Fast-K line. Valid range from 1 to 100000.
-     * @param int $fastD_Period Smoothing for making the Fast-D line. Valid range from 1 to 100000, usually set to 3.
-     * @param int $fastD_MAType Type of Moving Average for Fast-D. MA_TYPE_* series of constants should be used.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Time period for building the Fast-K line. Valid range from 1 to 100000.
+     * @param  int  $fastK_Period  Time period for building the Fast-K line. Valid range from 1 to 100000.
+     * @param  int  $fastD_Period  Smoothing for making the Fast-D line. Valid range from 1 to 100000, usually set to 3.
+     * @param  int  $fastD_MAType  Type of Moving Average for Fast-D. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
     public function stochf(
         array $high,
         array $low,
         array $close,
-        int   $fastK_Period = 5,
-        int   $fastD_Period = 3,
-        int   $fastD_MAType = 0
-    ): array
-    {
+        int $fastK_Period = 5,
+        int $fastD_Period = 3,
+        int $fastD_MAType = 0
+    ): array {
         $result = trader_stochf(
             $high,
             $low,
@@ -2843,22 +2680,20 @@ class IndicatorService implements IndicatorContract
     /**
      * Stochastic Relative Strength Index.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     * @param int $fastK_Period Time period for building the Fast-K line. Valid range from 1 to 100000.
-     * @param int $fastD_Period Smoothing for making the Fast-D line. Valid range from 1 to 100000, usually set to 3.
-     * @param int $fastD_MAType Type of Moving Average for Fast-D. MA_TYPE_* series of constants should be used.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
+     * @param  int  $fastK_Period  Time period for building the Fast-K line. Valid range from 1 to 100000.
+     * @param  int  $fastD_Period  Smoothing for making the Fast-D line. Valid range from 1 to 100000, usually set to 3.
+     * @param  int  $fastD_MAType  Type of Moving Average for Fast-D. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
     public function stochrsi(
         array $real,
-        int   $timePeriod = 14,
-        int   $fastK_Period = 5,
-        int   $fastD_Period = 3,
-        int   $fastD_MAType = 0
-    ): array
-    {
+        int $timePeriod = 14,
+        int $fastK_Period = 5,
+        int $fastD_Period = 3,
+        int $fastD_MAType = 0
+    ): array {
         $result = trader_stochrsi(
             $real,
             $timePeriod,
@@ -2877,9 +2712,8 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the vector subtraction of real1 from real0 and returns the resulting vector.
      *
-     * @param array $real0 Array of real values.
-     * @param array $real1 Array of real values.
-     *
+     * @param  array  $real0  Array of real values.
+     * @param  array  $real1  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function sub(array $real0, array $real1): array
@@ -2894,9 +2728,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Summation.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function sum(array $real, int $timePeriod = 30): array
@@ -2911,10 +2744,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Triple Exponential Moving Average (T3).
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     * @param float $vFactor Volume Factor. Valid range from 1 to 0.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
+     * @param  float  $vFactor  Volume Factor. Valid range from 1 to 0.
      * @return array Returns an array with calculated data.
      */
     public function t3(array $real, int $timePeriod = 5, float $vFactor = 0.7): array
@@ -2931,8 +2763,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the tangent for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function tan(array $real): array
@@ -2949,8 +2780,7 @@ class IndicatorService implements IndicatorContract
      *
      * Calculates the hyperbolic tangent for each value in real and returns the resulting array.
      *
-     * @param array $real Array of real values.
-     *
+     * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
     public function tanh(array $real): array
@@ -2965,9 +2795,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Triple Exponential Moving Average.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function tema(array $real, int $timePeriod = 30): array
@@ -2982,10 +2811,9 @@ class IndicatorService implements IndicatorContract
     /**
      * True Range.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function trange(array $high, array $low, array $close): array
@@ -3000,9 +2828,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Triangular Moving Average.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function trima(array $real, int $timePeriod = 30): array
@@ -3017,9 +2844,8 @@ class IndicatorService implements IndicatorContract
     /**
      * 1-day Rate-Of-Change (ROC) of a Triple Smooth EMA.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod [OPTIONAL] [DEFAULT 30] Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  [OPTIONAL] [DEFAULT 30] Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function trix(array $real, int $timePeriod = 30): array
@@ -3034,9 +2860,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Time Series Forecast.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function tsf(array $real, int $timePeriod = 14): array
@@ -3051,10 +2876,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Typical Price.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function typprice(array $high, array $low, array $close): array
@@ -3069,24 +2893,22 @@ class IndicatorService implements IndicatorContract
     /**
      * Ultimate Oscillator.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param int $timePeriod1 Number of bars for 1st period. Valid range from 1 to 100000.
-     * @param int $timePeriod2 Number of bars for 2nd period. Valid range from 1 to 100000.
-     * @param int $timePeriod3 Number of bars for 3rd period. Valid range from 1 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  int  $timePeriod1  Number of bars for 1st period. Valid range from 1 to 100000.
+     * @param  int  $timePeriod2  Number of bars for 2nd period. Valid range from 1 to 100000.
+     * @param  int  $timePeriod3  Number of bars for 3rd period. Valid range from 1 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function ultosc(
         array $high,
         array $low,
         array $close,
-        int   $timePeriod1 = 7,
-        int   $timePeriod2 = 14,
-        int   $timePeriod3 = 28
-    ): array
-    {
+        int $timePeriod1 = 7,
+        int $timePeriod2 = 14,
+        int $timePeriod3 = 28
+    ): array {
         $result = trader_ultosc($high, $low, $close, $timePeriod1, $timePeriod2, $timePeriod3);
 
         $this->handleErrors();
@@ -3097,10 +2919,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Variance.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     * @param float $nbDev Number of deviations
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
+     * @param  float  $nbDev  Number of deviations
      * @return array Returns an array with calculated data.
      */
     public function var(array $real, int $timePeriod = 5, float $nbDev = 1.0): array
@@ -3115,10 +2936,9 @@ class IndicatorService implements IndicatorContract
     /**
      * Weighted Close Price.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
     public function wclprice(array $high, array $low, array $close): array
@@ -3133,11 +2953,10 @@ class IndicatorService implements IndicatorContract
     /**
      * Williams' %R.
      *
-     * @param array $high High price, array of real values.
-     * @param array $low Low price, array of real values.
-     * @param array $close Closing price, array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $high  High price, array of real values.
+     * @param  array  $low  Low price, array of real values.
+     * @param  array  $close  Closing price, array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function willr(array $high, array $low, array $close, int $timePeriod = 14): array
@@ -3152,9 +2971,8 @@ class IndicatorService implements IndicatorContract
     /**
      * Weighted Moving Average.
      *
-     * @param array $real Array of real values.
-     * @param int $timePeriod Number of period. Valid range from 2 to 100000.
-     *
+     * @param  array  $real  Array of real values.
+     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function wma(array $real, int $timePeriod = 30): array

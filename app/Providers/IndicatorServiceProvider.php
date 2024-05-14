@@ -10,20 +10,20 @@ use Illuminate\Support\ServiceProvider;
 class IndicatorServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function register(): void
     {
-        $this->app->singleton('indicator', fn() => new IndicatorService());
+        $this->app->singleton('indicator', fn () => new IndicatorService());
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function provides(): array
     {
         return [
-            IndicatorContract::class
+            IndicatorContract::class,
         ];
     }
 }
