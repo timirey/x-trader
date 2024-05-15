@@ -1,14 +1,11 @@
 name: lint
 
 on:
-  push:
-    branches:
-      - master
-      - develop
-      - 'feature/**'
-      - 'release/**'
-      - 'hotfix/**'
   pull_request:
+    types: 
+      - opened
+      - synchronize
+      - reopened
     branches:
       - develop
       - master
@@ -16,9 +13,6 @@ on:
 jobs:
   check-lint:
     runs-on: ubuntu-latest
-    
-    permissions:
-      contents: write
 
     steps:
        - name: Checkout code
