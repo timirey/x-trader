@@ -11,7 +11,7 @@ on:
       - master
 
 jobs:
-  check-tests:
+  check-pull-request:
     runs-on: ubuntu-latest
 
     steps:
