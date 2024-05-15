@@ -1,4 +1,4 @@
-name: git flow
+name: push
 
 on:
   push:
