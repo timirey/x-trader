@@ -1,8 +1,9 @@
-name: pint
+name: lint
 
 on:
   push:
     branches:
+      - master
       - develop
       - 'feature/**'
       - 'release/**'
@@ -10,18 +11,11 @@ on:
   pull_request:
     branches:
       - develop
+      - master
 
 jobs:
-  pint:
-
+  check-lint:
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: true
-      matrix:
-        php: [8.2]
-
-    name: PHP ${{ matrix.php }}
     
     permissions:
       contents: write
@@ -33,9 +27,7 @@ jobs:
        - name: Setup PHP
          uses: shivammathur/setup-php@v2
          with:
-           php-version: ${{ matrix.php }}
-           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite
-           coverage: none
+           php-version: 8.2
 
        - name: Copy .env
          run: php -r "file_exists('.env') || copy('.env.example', '.env');"
