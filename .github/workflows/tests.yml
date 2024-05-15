@@ -8,6 +8,7 @@ on:
       - reopened
     branches:
       - develop
+      - master
 
 jobs:
   check-tests:
