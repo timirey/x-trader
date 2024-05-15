@@ -1,0 +1,24 @@
+name: allow specific branch names to be merged
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - develop
+      - master
+
+jobs:
+  check-branch-name:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check branch prefix
+        run: |
+          BRANCH_NAME=${GITHUB_HEAD_REF}
+
+          if [[ "$BRANCH_NAME" =~ ^feature/|^release/|^hotfix/ ]]; then
+            echo "Branch name is valid."
+          else
+            echo "Error: Branch name must start with 'feature/', 'release/', or 'hotfix/'."
+            exit 1
+          fi
