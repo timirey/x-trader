@@ -1,16 +1,8 @@
-name: PHP Linting (Pint)
+name: pint
 
 on:
   push:
-    branches: 
-      - main
-      - dev
-      - 'release-*'
   pull_request:
-    branches:
-      - main
-      - dev
-      - 'release-*'
 
 jobs:
   pint:
