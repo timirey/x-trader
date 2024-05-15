@@ -1,4 +1,4 @@
-name: auto merge develop to master on release
+name: merge
 
 on:
   push:
