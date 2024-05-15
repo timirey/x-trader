@@ -1,17 +1,13 @@
 name: tests
 
 on:
-  push:
-    branches:
-      - develop
-      - master
-      - 'feature/**'
-      - 'release/**'
-      - 'hotfix/**'
   pull_request:
+    types: 
+      - opened
+      - synchronize
+      - reopened
     branches:
       - develop
-      - master
 
 jobs:
   check-tests:
