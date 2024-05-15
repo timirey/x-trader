@@ -2,13 +2,16 @@ name: pull request
 
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: 
+      - opened
+      - synchronize
+      - reopened
     branches:
       - develop
       - master
 
 jobs:
-  check-pull-request:
+  check-branch-name:
     runs-on: ubuntu-latest
 
     steps:
