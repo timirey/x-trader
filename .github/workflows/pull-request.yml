@@ -1,4 +1,4 @@
-name: tests
+name: pull request
 
 on:
   pull_request:
@@ -15,6 +15,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check branch prefix
+        run: |
+          BRANCH_NAME=${GITHUB_HEAD_REF}
+
+          if [[ "$BRANCH_NAME" =~ ^feature/|^release/|^hotfix/ ]]; then
+            echo "Branch name is valid."
+          else
+            echo "Error: Branch name must start with 'feature/', 'release/', or 'hotfix/'."
+            exit 1
+          fi
+    
       - name: Checkout code
         uses: actions/checkout@v4
 
