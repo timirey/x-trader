@@ -1,4 +1,4 @@
-name: pull requests
+name: pull request
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  check-pull-requests:
+  check-pull-request:
     runs-on: ubuntu-latest
 
     steps:
