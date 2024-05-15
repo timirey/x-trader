@@ -1,4 +1,4 @@
-name: check if pest tests pass
+name: tests
 
 on:
   push:
@@ -14,7 +14,7 @@ on:
       - master
 
 jobs:
-  check-pest-tests:
+  check-tests:
     runs-on: ubuntu-latest
 
     steps:
