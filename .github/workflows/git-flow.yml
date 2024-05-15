@@ -1,4 +1,4 @@
-name: merge
+name: git flow
 
 on:
   push:
