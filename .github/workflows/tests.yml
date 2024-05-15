@@ -4,12 +4,14 @@ on:
   push:
     branches:
       - develop
+      - master
       - 'feature/**'
       - 'release/**'
       - 'hotfix/**'
   pull_request:
     branches:
       - develop
+      - master
 
 jobs:
   check-tests:
