@@ -1,4 +1,4 @@
-name: allow specific branch names to be merged
+name: pull requests
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  check-branch-name:
+  check-pull-requests:
     runs-on: ubuntu-latest
 
     steps:
