@@ -35,5 +35,8 @@ jobs:
       - name: Directory Permissions
         run: chmod -R 777 storage bootstrap/cache
 
+      - name: Launch Pint inspection
+        run: vendor/bin/pint --test
+
       - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
         run: php artisan test
