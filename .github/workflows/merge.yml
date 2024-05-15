@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  merge:
+  merge-develop-to-master:
     runs-on: ubuntu-latest
 
     steps:
