@@ -2,7 +2,7 @@ name: pull request
 
 on:
   pull_request:
-    types: 
+    types:
       - opened
       - synchronize
       - reopened
@@ -25,7 +25,7 @@ jobs:
             echo "Error: Branch name must start with 'feature/', 'release/', or 'hotfix/'."
             exit 1
           fi
-    
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -33,6 +33,12 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
+          tools: pecl
+
+      - name: Install Trader extension
+        run: |
+          sudo pecl install trader
+          echo "extension=trader.so" | sudo tee -a "$PHP_INI_DIR/php.ini"
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
