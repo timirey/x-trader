@@ -34,10 +34,6 @@ jobs:
         with:
           php-version: 8.2
           extensions: trader
-          tools: pecl
-
-      - name: Install Trader extension
-        run: sudo pecl install trader
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
