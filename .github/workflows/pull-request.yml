@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check branch prefix
+      - name: Check branch prefix #todo: restrict opening MR into master if it is not an hotfix or release
         run: |
           BRANCH_NAME=${GITHUB_HEAD_REF}
 
@@ -33,12 +33,11 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
+          extensions: trader
           tools: pecl
 
       - name: Install Trader extension
-        run: |
-          sudo pecl install trader
-          echo "extension=trader.so" | sudo tee -a "$PHP_INI_DIR/php.ini"
+        run: sudo pecl install trader
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
