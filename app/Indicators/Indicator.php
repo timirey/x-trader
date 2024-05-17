@@ -13,6 +13,11 @@ abstract class Indicator
         $this->buildConfig($config);
     }
 
+    public function __invoke(): array
+    {
+        return $this->calculate();
+    }
+
     protected function buildConfig(array $config): void
     {
         $this->config = array_merge_recursive_distinct($this->config, $config);
