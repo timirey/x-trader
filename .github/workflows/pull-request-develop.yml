@@ -1,0 +1,56 @@
+name: pull request
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+    branches:
+      - develop
+
+jobs:
+  check-pull-request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check branch prefix
+        run: |
+          BRANCH_NAME=${GITHUB_HEAD_REF}
+
+          if [[ "$BRANCH_NAME" =~ ^feature/|^release/|^hotfix/ ]]; then
+            echo "Branch name is valid."
+          else
+            echo "Error: Branch name must start with 'feature/', 'release/', or 'hotfix/'."
+            exit 1
+          fi
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+          extensions: trader
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Install Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Generate key
+        run: php artisan key:generate
+
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Launch Pint inspection
+        run: vendor/bin/pint --test
+
+      - name: Execute tests (Unit and Feature tests) via PHPUnit/Pest
+        run: php artisan test

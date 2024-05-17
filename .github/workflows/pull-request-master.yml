@@ -1,13 +1,15 @@
 name: pull request
 
 on:
+  push:
+    branches:
+      - master
   pull_request:
     types:
       - opened
       - synchronize
       - reopened
     branches:
-      - develop
       - master
 
 jobs:
@@ -15,14 +17,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check branch prefix #todo: restrict opening MR into master if it is not an hotfix or release
+      - name: Check branch prefix
         run: |
           BRANCH_NAME=${GITHUB_HEAD_REF}
 
-          if [[ "$BRANCH_NAME" =~ ^feature/|^release/|^hotfix/ ]]; then
+          if [[ "$BRANCH_NAME" =~ ^release/|^hotfix/ ]]; then
             echo "Branch name is valid."
           else
-            echo "Error: Branch name must start with 'feature/', 'release/', or 'hotfix/'."
+            echo "Error: Branch name must start with 'release/', or 'hotfix/'."
             exit 1
           fi
 
