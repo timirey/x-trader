@@ -10,7 +10,7 @@ on:
       - develop
 
 jobs:
-  check-pull-request:
+  check-pull-request-develop:
     runs-on: ubuntu-latest
 
     steps:

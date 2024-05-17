@@ -10,7 +10,7 @@ on:
       - master
 
 jobs:
-  check-pull-request:
+  check-pull-request-master:
     runs-on: ubuntu-latest
 
     steps:
