@@ -12,14 +12,14 @@ beforeEach(function () {
     $this->candles->shouldReceive('closes')->andReturn($closes);
 });
 
-test('rsi indicator returns array', function () {
+test('basic indicator returns array', function () {
     $indicator = new RSI($this->candles);
     $result = $indicator->calculate();
 
     expect($result)->toBeArray();
 });
 
-test('rsi time period overwrite', function () {
+test('basic indicator config overwrite', function () {
     $indicator = new RSI($this->candles);
 
     $reflection = new ReflectionClass($indicator);
