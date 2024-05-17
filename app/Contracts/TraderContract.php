@@ -2,9 +2,6 @@
 
 namespace App\Contracts;
 
-/**
- * Interface Indicators
- */
 interface TraderContract
 {
     const MA_TYPE_SMA = 0;
@@ -304,10 +301,10 @@ interface TraderContract
     /**
      * Commodity Channel Index.
      *
-     * @param  array  $high  High price, array of real values.
-     * @param  array  $low  Low price, array of real values.
-     * @param  array  $close  Closing price, array of real values.
-     * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
+     * @param array $high High price, array of real values.
+     * @param array $low Low price, array of real values.
+     * @param array $close Closing price, array of real values.
+     * @param int|null $timePeriod Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
     public function cci(array $high, array $low, array $close, ?int $timePeriod = null): array;
