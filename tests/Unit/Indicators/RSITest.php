@@ -6,15 +6,35 @@ use App\Indicators\RSI;
 beforeEach(function () {
     $ohlcv = include 'tests/Fixtures/ohlcv.php';
 
-    $this->closes = array_column($ohlcv, 'close');
+    $closes = array_column($ohlcv, 'close');
+
+    $this->candles = Mockery::mock(CandleCollection::class);
+    $this->candles->shouldReceive('closes')->andReturn($closes);
 });
 
 test('rsi indicator returns array', function () {
-    $candlesMock = Mockery::mock(CandleCollection::class);
-    $candlesMock->shouldReceive('closes')->andReturn($this->closes);
-
-    $indicator = new RSI($candlesMock);
+    $indicator = new RSI($this->candles);
     $result = $indicator->calculate();
 
     expect($result)->toBeArray();
+});
+
+test('rsi time period overwrite', function () {
+    $indicator = new RSI($this->candles);
+
+    $reflection = new ReflectionClass($indicator);
+    $property = $reflection->getProperty('config');
+    $property->setAccessible(true);
+
+    $config = $property->getValue($indicator);
+
+    expect($config['timePeriod'])->toBe(14);
+
+    $indicator = new RSI($this->candles, [
+        'timePeriod' => 20,
+    ]);
+
+    $config = $property->getValue($indicator);
+
+    expect($config['timePeriod'])->toBe(20);
 });
