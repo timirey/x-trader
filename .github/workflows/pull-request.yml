@@ -2,7 +2,7 @@ name: pull request
 
 on:
   pull_request:
-    types: 
+    types:
       - opened
       - synchronize
       - reopened
@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check branch prefix
+      - name: Check branch prefix #todo: restrict opening MR into master if it is not an hotfix or release
         run: |
           BRANCH_NAME=${GITHUB_HEAD_REF}
 
@@ -25,7 +25,7 @@ jobs:
             echo "Error: Branch name must start with 'feature/', 'release/', or 'hotfix/'."
             exit 1
           fi
-    
+
       - name: Checkout code
         uses: actions/checkout@v4
 
@@ -33,6 +33,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
+          extensions: trader
 
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
