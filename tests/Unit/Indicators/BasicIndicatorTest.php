@@ -1,7 +1,22 @@
 <?php
 
 use App\Collections\CandleCollection;
-use App\Indicators\RSI;
+use App\Indicators\Indicator;
+
+function createBasicIndicatorClass(CandleCollection $candles, array $config = []): Indicator
+{
+    return new class($candles, $config) extends Indicator
+    {
+        protected array $config = [
+            'timePeriod' => 14,
+        ];
+
+        public function calculate(): array
+        {
+            return trader_rsi($this->candles->closes(), $this->config['timePeriod']) ?: [];
+        }
+    };
+}
 
 beforeEach(function () {
     $ohlcv = include 'tests/Fixtures/ohlcv.php';
@@ -13,14 +28,14 @@ beforeEach(function () {
 });
 
 test('basic indicator returns array', function () {
-    $indicator = new RSI($this->candles);
+    $indicator = createBasicIndicatorClass($this->candles);
     $result = $indicator->calculate();
 
     expect($result)->toBeArray();
 });
 
 test('basic indicator config overwrite', function () {
-    $indicator = new RSI($this->candles);
+    $indicator = createBasicIndicatorClass($this->candles);
 
     $reflection = new ReflectionClass($indicator);
     $property = $reflection->getProperty('config');
@@ -30,7 +45,7 @@ test('basic indicator config overwrite', function () {
 
     expect($config['timePeriod'])->toBe(14);
 
-    $indicator = new RSI($this->candles, [
+    $indicator = createBasicIndicatorClass($this->candles, [
         'timePeriod' => 20,
     ]);
 
