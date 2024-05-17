@@ -3,7 +3,7 @@
 use App\Services\TraderService;
 
 beforeEach(function () {
-    $ohlcv = include 'tests/Unit/Fixtures/ohlcv.php';
+    $ohlcv = include 'tests/Fixtures/ohlcv.php';
 
     $this->open = array_column($ohlcv, 'open');
     $this->high = array_column($ohlcv, 'high');
