@@ -2,19 +2,19 @@
 
 namespace App\Providers;
 
-use App\Contracts\IndicatorContract;
-use App\Services\IndicatorService;
+use App\Contracts\TraderContract;
+use App\Services\TraderService;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class IndicatorServiceProvider extends ServiceProvider implements DeferrableProvider
+class TraderServiceProvider extends ServiceProvider implements DeferrableProvider
 {
     /**
      * {@inheritdoc}
      */
     public function register(): void
     {
-        $this->app->singleton('indicator', fn () => new IndicatorService());
+        $this->app->singleton('trader', fn () => new TraderService());
     }
 
     /**
@@ -23,7 +23,7 @@ class IndicatorServiceProvider extends ServiceProvider implements DeferrableProv
     public function provides(): array
     {
         return [
-            IndicatorContract::class,
+            TraderContract::class,
         ];
     }
 }

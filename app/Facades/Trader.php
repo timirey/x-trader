@@ -169,15 +169,15 @@ use Illuminate\Support\Facades\Facade;
  * @method static array willr(array $high, array $low, array $close, int $timePeriod = 14)
  * @method static array wma(array $real, int $timePeriod = 30)
  *
- * @see \App\Contracts\IndicatorContract
+ * @see \App\Contracts\TraderContract
  */
-class Indicator extends Facade
+class Trader extends Facade
 {
     /**
      * {@inheritdoc}
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'indicator';
+        return 'trader';
     }
 }

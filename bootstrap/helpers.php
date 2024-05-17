@@ -1,13 +1,13 @@
 <?php
 
-use App\Contracts\IndicatorContract;
+use App\Contracts\TraderContract;
 
-if (! function_exists('indicator')) {
+if (! function_exists('trader')) {
     /**
      * Get the indicator service.
      */
-    function indicator(): IndicatorContract
+    function indicator(): TraderContract
     {
-        return app(IndicatorContract::class);
+        return app(TraderContract::class);
     }
 }
