@@ -3,5 +3,5 @@
 return [
     App\Providers\AppServiceProvider::class,
     App\Providers\HorizonServiceProvider::class,
-    App\Providers\IndicatorServiceProvider::class,
+    App\Providers\TraderServiceProvider::class,
 ];
