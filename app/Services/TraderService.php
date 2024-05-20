@@ -1,123 +1,35 @@
 <?php
 
-namespace App\Contracts;
+namespace App\Services;
 
-/**
- * Interface Indicators
- */
-interface IndicatorContract
+use App\Contracts\TraderContract;
+use BadFunctionCallException;
+
+class TraderService implements TraderContract
 {
-    const MA_TYPE_SMA = 0;
-
-    const MA_TYPE_EMA = 1;
-
-    const MA_TYPE_WMA = 2;
-
-    const MA_TYPE_DEMA = 3;
-
-    const MA_TYPE_TEMA = 4;
-
-    const MA_TYPE_TRIMA = 5;
-
-    const MA_TYPE_KAMA = 6;
-
-    const MA_TYPE_MAMA = 7;
-
-    const MA_TYPE_T3 = 8;
-
-    const REAL_MIN = -3.0000000000000002E+37;
-
-    const REAL_MAX = 3.0000000000000002E+37;
-
-    const FUNC_UNST_ADX = 0;
-
-    const FUNC_UNST_ADXR = 1;
-
-    const FUNC_UNST_ATR = 2;
-
-    const FUNC_UNST_CMO = 3;
-
-    const FUNC_UNST_DX = 4;
-
-    const FUNC_UNST_EMA = 5;
-
-    const FUNC_UNST_HT_DCPERIOD = 6;
-
-    const FUNC_UNST_HT_DCPHASE = 7;
-
-    const FUNC_UNST_HT_PHASOR = 8;
-
-    const FUNC_UNST_HT_TRENDLINE = 10;
-
-    const FUNC_UNST_HT_TRENDMODE = 11;
-
-    const FUNC_UNST_KAMA = 12;
-
-    const FUNC_UNST_MAMA = 13;
-
-    const FUNC_UNST_MFI = 14;
-
-    const FUNC_UNST_MINUS_DI = 15;
-
-    const FUNC_UNST_MINUS_DM = 16;
-
-    const FUNC_UNST_NATR = 17;
-
-    const FUNC_UNST_PLUS_DI = 18;
-
-    const FUNC_UNST_PLUS_DM = 19;
-
-    const FUNC_UNST_RSI = 20;
-
-    const FUNC_UNST_STOCHRSI = 21;
-
-    const FUNC_UNST_T3 = 22;
-
-    const FUNC_UNST_ALL = 23;
-
-    const FUNC_UNST_NONE = -1;
-
-    const COMPATIBILITY_DEFAULT = 0;
-
-    const COMPATIBILITY_METASTOCK = 1;
-
-    const ERR_SUCCESS = 0;
-
-    const ERR_LIB_NOT_INITIALIZE = 1;
-
-    const ERR_BAD_PARAM = 2;
-
-    const ERR_ALLOC_ERR = 3;
-
-    const ERR_GROUP_NOT_FOUND = 4;
-
-    const ERR_FUNC_NOT_FOUND = 5;
-
-    const ERR_INVALID_HANDLE = 6;
-
-    const ERR_INVALID_PARAM_HOLDER = 7;
-
-    const ERR_INVALID_PARAM_HOLDER_TYPE = 8;
-
-    const ERR_INVALID_PARAM_FUNCTION = 9;
-
-    const ERR_INPUT_NOT_ALL_INITIALIZE = 10;
-
-    const ERR_OUTPUT_NOT_ALL_INITIALIZE = 11;
-
-    const ERR_OUT_OF_RANGE_START_INDEX = 12;
-
-    const ERR_OUT_OF_RANGE_END_INDEX = 13;
-
-    const ERR_INVALID_LIST_TYPE = 14;
-
-    const ERR_BAD_OBJECT = 15;
-
-    const ERR_NOT_SUPPORTED = 16;
-
-    const ERR_INTERNAL_ERROR = 5000;
-
-    const ERR_UNKNOWN_ERROR = 65535;
+    /**
+     * The error messages.
+     */
+    protected static array $errors = [
+        self::ERR_LIB_NOT_INITIALIZE => 'Library not initialized',
+        self::ERR_BAD_PARAM => 'Bad parameter',
+        self::ERR_ALLOC_ERR => 'Allocation error',
+        self::ERR_GROUP_NOT_FOUND => 'Group not found',
+        self::ERR_FUNC_NOT_FOUND => 'Function not found',
+        self::ERR_INVALID_HANDLE => 'Invalid handle',
+        self::ERR_INVALID_PARAM_HOLDER => 'Invalid parameter holder',
+        self::ERR_INVALID_PARAM_HOLDER_TYPE => 'Invalid parameter holder type',
+        self::ERR_INVALID_PARAM_FUNCTION => 'Invalid parameter function',
+        self::ERR_INPUT_NOT_ALL_INITIALIZE => 'Input not all initialized',
+        self::ERR_OUTPUT_NOT_ALL_INITIALIZE => 'Output not all initialized',
+        self::ERR_OUT_OF_RANGE_START_INDEX => 'Out of range on start index',
+        self::ERR_OUT_OF_RANGE_END_INDEX => 'Out of range on end index',
+        self::ERR_INVALID_LIST_TYPE => 'Invalid list type',
+        self::ERR_BAD_OBJECT => 'Bad object',
+        self::ERR_NOT_SUPPORTED => 'Not supported',
+        self::ERR_INTERNAL_ERROR => 'Internal error',
+        self::ERR_UNKNOWN_ERROR => 'Unknown error',
+    ];
 
     /**
      * Vector Trigonometric ACos.
@@ -127,7 +39,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function acos(array $real): array;
+    public function acos(array $real): array
+    {
+        $result = trader_acos($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Chaikin A/D Line.
@@ -138,7 +57,14 @@ interface IndicatorContract
      * @param  array  $volume  Volume traded, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function ad(array $high, array $low, array $close, array $volume): array;
+    public function ad(array $high, array $low, array $close, array $volume): array
+    {
+        $result = trader_ad($high, $low, $close, $volume);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Arithmetic Add.
@@ -149,7 +75,14 @@ interface IndicatorContract
      * @param  array  $real1  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function add(array $real0, array $real1): array;
+    public function add(array $real0, array $real1): array
+    {
+        $result = trader_add($real0, $real1);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Chaikin A/D Oscillator.
@@ -169,7 +102,13 @@ interface IndicatorContract
         array $volume,
         int $fastPeriod = 3,
         int $slowPeriod = 10
-    ): array;
+    ): array {
+        $result = trader_adosc($high, $low, $close, $volume, $fastPeriod, $slowPeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Average Directional Movement Index.
@@ -180,7 +119,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function adx(array $high, array $low, array $close, int $timePeriod = 14): array;
+    public function adx(array $high, array $low, array $close, int $timePeriod = 14): array
+    {
+        $result = trader_adx($high, $low, $close, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Average Directional Movement Index Rating.
@@ -191,7 +137,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function adxr(array $high, array $low, array $close, int $timePeriod = 14): array;
+    public function adxr(array $high, array $low, array $close, int $timePeriod = 14): array
+    {
+        $result = trader_adxr($high, $low, $close, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Absolute Price Oscillator.
@@ -202,7 +155,14 @@ interface IndicatorContract
      * @param  int  $mAType  Type of Moving Average. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
-    public function apo(array $real, int $fastPeriod = 12, int $slowPeriod = 26, int $mAType = 0): array;
+    public function apo(array $real, int $fastPeriod = 12, int $slowPeriod = 26, int $mAType = 0): array
+    {
+        $result = trader_apo($real, $fastPeriod, $slowPeriod, $mAType);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Aroon.
@@ -212,7 +172,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function aroon(array $high, array $low, int $timePeriod = 14): array;
+    public function aroon(array $high, array $low, int $timePeriod = 14): array
+    {
+        $result = trader_aroon($high, $low, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Aroon Oscillator.
@@ -222,7 +189,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function aroonosc(array $high, array $low, int $timePeriod = 14): array;
+    public function aroonosc(array $high, array $low, int $timePeriod = 14): array
+    {
+        $result = trader_aroonosc($high, $low, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Trigonometric ASin.
@@ -230,7 +204,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function asin(array $real): array;
+    public function asin(array $real): array
+    {
+        $result = trader_asin($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Trigonometric ATan.
@@ -238,7 +219,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function atan(array $real): array;
+    public function atan(array $real): array
+    {
+        $result = trader_atan($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Average True Range.
@@ -249,7 +237,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function atr(array $high, array $low, array $close, int $timePeriod = 14): array;
+    public function atr(array $high, array $low, array $close, int $timePeriod = 14): array
+    {
+        $result = trader_atr($high, $low, $close, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Average Price.
@@ -260,7 +255,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function avgprice(array $open, array $high, array $low, array $close): array;
+    public function avgprice(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_avgprice($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Bollinger Bands.
@@ -278,7 +280,13 @@ interface IndicatorContract
         float $nbDevUp = 2.0,
         float $nbDevDn = 2.0,
         int $mAType = 0
-    ): array;
+    ): array {
+        $result = trader_bbands($real, $timePeriod, $nbDevUp, $nbDevDn, $mAType);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Beta.
@@ -288,7 +296,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function beta(array $real0, array $real1, int $timePeriod = 5): array;
+    public function beta(array $real0, array $real1, int $timePeriod = 5): array
+    {
+        $result = trader_beta($real0, $real1, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Balance Of Power.
@@ -299,7 +314,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function bop(array $open, array $high, array $low, array $close): array;
+    public function bop(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_bop($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Commodity Channel Index.
@@ -310,7 +332,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function cci(array $high, array $low, array $close, ?int $timePeriod = null): array;
+    public function cci(array $high, array $low, array $close, ?int $timePeriod = null): array
+    {
+        $result = trader_cci($high, $low, $close, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Two Crows.
@@ -321,7 +350,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdl2crows(array $open, array $high, array $low, array $close): array;
+    public function cdl2crows(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdl2crows($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Three Black Crows.
@@ -332,7 +368,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdl3blackcrows(array $open, array $high, array $low, array $close): array;
+    public function cdl3blackcrows(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdl3blackcrows($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Three Inside Up/Down.
@@ -343,7 +386,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdl3inside(array $open, array $high, array $low, array $close): array;
+    public function cdl3inside(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdl3inside($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Three-Line Strike
@@ -354,7 +404,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdl3linestrike(array $open, array $high, array $low, array $close): array;
+    public function cdl3linestrike(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdl3linestrike($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Three Outside Up/Down.
@@ -365,7 +422,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdl3outside(array $open, array $high, array $low, array $close): array;
+    public function cdl3outside(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdl3outside($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Three Stars In The South.
@@ -376,7 +440,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdl3starsinsouth(array $open, array $high, array $low, array $close): array;
+    public function cdl3starsinsouth(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdl3starsinsouth($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Three Advancing White Soldiers.
@@ -387,7 +458,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdl3whitesoldiers(array $open, array $high, array $low, array $close): array;
+    public function cdl3whitesoldiers(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdl3whitesoldiers($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Abandoned Baby.
@@ -405,7 +483,13 @@ interface IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.3
-    ): array;
+    ): array {
+        $result = trader_cdlabandonedbaby($open, $high, $low, $close, $penetration);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Advance Block.
@@ -416,7 +500,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdladvanceblock(array $open, array $high, array $low, array $close): array;
+    public function cdladvanceblock(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdladvanceblock($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Belt-hold.
@@ -427,7 +518,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlbelthold(array $open, array $high, array $low, array $close): array;
+    public function cdlbelthold(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlbelthold($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Breakaway.
@@ -438,7 +536,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlbreakaway(array $open, array $high, array $low, array $close): array;
+    public function cdlbreakaway(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlbreakaway($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Closing Marubozu.
@@ -449,7 +554,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlclosingmarubozu(array $open, array $high, array $low, array $close): array;
+    public function cdlclosingmarubozu(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlclosingmarubozu($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Concealing Baby Swallow.
@@ -460,7 +572,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlconcealbabyswall(array $open, array $high, array $low, array $close): array;
+    public function cdlconcealbabyswall(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlconcealbabyswall($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Counterattack.
@@ -471,7 +590,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlcounterattack(array $open, array $high, array $low, array $close): array;
+    public function cdlcounterattack(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlcounterattack($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Dark Cloud Cover.
@@ -489,7 +615,13 @@ interface IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.5
-    ): array;
+    ): array {
+        $result = trader_cdldarkcloudcover($open, $high, $low, $close, $penetration);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Doji.
@@ -500,7 +632,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdldoji(array $open, array $high, array $low, array $close): array;
+    public function cdldoji(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdldoji($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Doji Star.
@@ -511,7 +650,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdldojistar(array $open, array $high, array $low, array $close): array;
+    public function cdldojistar(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdldojistar($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Dragonfly Doji.
@@ -522,7 +668,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdldragonflydoji(array $open, array $high, array $low, array $close): array;
+    public function cdldragonflydoji(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdldragonflydoji($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Engulfing Pattern.
@@ -533,7 +686,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlengulfing(array $open, array $high, array $low, array $close): array;
+    public function cdlengulfing(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlengulfing($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Evening Doji Star.
@@ -551,7 +711,13 @@ interface IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.3
-    ): array;
+    ): array {
+        $result = trader_cdleveningdojistar($open, $high, $low, $close, $penetration);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Evening Star.
@@ -569,7 +735,13 @@ interface IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.3
-    ): array;
+    ): array {
+        $result = trader_cdleveningstar($open, $high, $low, $close, $penetration);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Up/Down-gap side-by-side white lines.
@@ -580,7 +752,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlgapsidesidewhite(array $open, array $high, array $low, array $close): array;
+    public function cdlgapsidesidewhite(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlgapsidesidewhite($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Gravestone Doji.
@@ -591,7 +770,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlgravestonedoji(array $open, array $high, array $low, array $close): array;
+    public function cdlgravestonedoji(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlgravestonedoji($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Hammer.
@@ -602,7 +788,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlhammer(array $open, array $high, array $low, array $close): array;
+    public function cdlhammer(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlhammer($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Hanging Man.
@@ -613,7 +806,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlhangingman(array $open, array $high, array $low, array $close): array;
+    public function cdlhangingman(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlhangingman($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Harami Pattern.
@@ -624,7 +824,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlharami(array $open, array $high, array $low, array $close): array;
+    public function cdlharami(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlharami($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Harami Cross Pattern.
@@ -635,7 +842,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlharamicross(array $open, array $high, array $low, array $close): array;
+    public function cdlharamicross(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlharamicross($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * High-Wave Candle.
@@ -646,7 +860,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlhighwave(array $open, array $high, array $low, array $close): array;
+    public function cdlhighwave(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlhighwave($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Hikkake Pattern.
@@ -657,7 +878,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlhikkake(array $open, array $high, array $low, array $close): array;
+    public function cdlhikkake(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlhikkake($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Modified Hikkake Pattern.
@@ -668,7 +896,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlhikkakemod(array $open, array $high, array $low, array $close): array;
+    public function cdlhikkakemod(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlhikkakemod($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Homing Pigeon.
@@ -679,7 +914,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlhomingpigeon(array $open, array $high, array $low, array $close): array;
+    public function cdlhomingpigeon(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlhomingpigeon($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Identical Three Crows.
@@ -690,7 +932,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlidentical3crows(array $open, array $high, array $low, array $close): array;
+    public function cdlidentical3crows(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlidentical3crows($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * In-Neck Pattern.
@@ -701,7 +950,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlinneck(array $open, array $high, array $low, array $close): array;
+    public function cdlinneck(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlinneck($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Inverted Hammer.
@@ -712,7 +968,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlinvertedhammer(array $open, array $high, array $low, array $close): array;
+    public function cdlinvertedhammer(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlinvertedhammer($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Kicking.
@@ -723,7 +986,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlkicking(array $open, array $high, array $low, array $close): array;
+    public function cdlkicking(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlkicking($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Kicking - bull/bear determined by the longer marubozu.
@@ -734,7 +1004,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlkickingbylength(array $open, array $high, array $low, array $close): array;
+    public function cdlkickingbylength(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlkickingbylength($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Ladder Bottom.
@@ -745,7 +1022,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlladderbottom(array $open, array $high, array $low, array $close): array;
+    public function cdlladderbottom(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlladderbottom($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Long Legged Doji.
@@ -756,7 +1040,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdllongleggeddoji(array $open, array $high, array $low, array $close): array;
+    public function cdllongleggeddoji(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdllongleggeddoji($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Long Line Candle.
@@ -767,7 +1058,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdllongline(array $open, array $high, array $low, array $close): array;
+    public function cdllongline(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdllongline($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Marubozu.
@@ -778,7 +1076,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlmarubozu(array $open, array $high, array $low, array $close): array;
+    public function cdlmarubozu(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlmarubozu($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Matching Low.
@@ -789,7 +1094,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlmatchinglow(array $open, array $high, array $low, array $close): array;
+    public function cdlmatchinglow(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlmatchinglow($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Mat Hold.
@@ -807,7 +1119,13 @@ interface IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.5
-    ): array;
+    ): array {
+        $result = trader_cdlmathold($open, $high, $low, $close, $penetration);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Morning Doji Star.
@@ -825,7 +1143,13 @@ interface IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.3
-    ): array;
+    ): array {
+        $result = trader_cdlmorningdojistar($open, $high, $low, $close, $penetration);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Morning Star.
@@ -843,7 +1167,13 @@ interface IndicatorContract
         array $low,
         array $close,
         float $penetration = 0.3
-    ): array;
+    ): array {
+        $result = trader_cdlmorningstar($open, $high, $low, $close, $penetration);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * On-Neck Pattern.
@@ -854,7 +1184,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlonneck(array $open, array $high, array $low, array $close): array;
+    public function cdlonneck(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlonneck($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Piercing Pattern.
@@ -865,7 +1202,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlpiercing(array $open, array $high, array $low, array $close): array;
+    public function cdlpiercing(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlpiercing($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Rickshaw Man.
@@ -876,7 +1220,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlrickshawman(array $open, array $high, array $low, array $close): array;
+    public function cdlrickshawman(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlrickshawman($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Rising/Falling Three Methods.
@@ -887,7 +1238,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlrisefall3methods(array $open, array $high, array $low, array $close): array;
+    public function cdlrisefall3methods(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlrisefall3methods($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Separating Lines.
@@ -898,7 +1256,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlseparatinglines(array $open, array $high, array $low, array $close): array;
+    public function cdlseparatinglines(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlseparatinglines($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Shooting Star.
@@ -909,7 +1274,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlshootingstar(array $open, array $high, array $low, array $close): array;
+    public function cdlshootingstar(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlshootingstar($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Short Line Candle.
@@ -920,7 +1292,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlshortline(array $open, array $high, array $low, array $close): array;
+    public function cdlshortline(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlshortline($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Spinning Top.
@@ -931,7 +1310,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlspinningtop(array $open, array $high, array $low, array $close): array;
+    public function cdlspinningtop(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlspinningtop($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Stalled Pattern.
@@ -942,7 +1328,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlstalledpattern(array $open, array $high, array $low, array $close): array;
+    public function cdlstalledpattern(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlstalledpattern($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Stick Sandwich.
@@ -953,7 +1346,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlsticksandwich(array $open, array $high, array $low, array $close): array;
+    public function cdlsticksandwich(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlsticksandwich($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Takuri (Dragonfly Doji with very long lower shadow).
@@ -964,7 +1364,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdltakuri(array $open, array $high, array $low, array $close): array;
+    public function cdltakuri(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdltakuri($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Tasuki Gap.
@@ -975,7 +1382,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdltasukigap(array $open, array $high, array $low, array $close): array;
+    public function cdltasukigap(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdltasukigap($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Thrusting Pattern.
@@ -986,7 +1400,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlthrusting(array $open, array $high, array $low, array $close): array;
+    public function cdlthrusting(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlthrusting($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Tristar Pattern.
@@ -997,7 +1418,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdltristar(array $open, array $high, array $low, array $close): array;
+    public function cdltristar(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdltristar($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Unique 3 River.
@@ -1008,7 +1436,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlunique3river(array $open, array $high, array $low, array $close): array;
+    public function cdlunique3river(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlunique3river($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Upside Gap Two Crows.
@@ -1019,7 +1454,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlupsidegap2crows(array $open, array $high, array $low, array $close): array;
+    public function cdlupsidegap2crows(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlupsidegap2crows($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Upside/Downside Gap Three Methods.
@@ -1030,7 +1472,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cdlxsidegap3methods(array $open, array $high, array $low, array $close): array;
+    public function cdlxsidegap3methods(array $open, array $high, array $low, array $close): array
+    {
+        $result = trader_cdlxsidegap3methods($open, $high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Ceil.
@@ -1040,7 +1489,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function ceil(array $real): array;
+    public function ceil(array $real): array
+    {
+        $result = trader_ceil($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Chande Momentum Oscillator.
@@ -1049,7 +1505,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function cmo(array $real, int $timePeriod = 14): array;
+    public function cmo(array $real, int $timePeriod = 14): array
+    {
+        $result = trader_cmo($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Pearson's Correlation Coefficient (r).
@@ -1059,7 +1522,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function correl(array $real0, array $real1, int $timePeriod = 30): array;
+    public function correl(array $real0, array $real1, int $timePeriod = 30): array
+    {
+        $result = trader_correl($real0, $real1, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Trigonometric Cos.
@@ -1069,7 +1539,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cos(array $real): array;
+    public function cos(array $real): array
+    {
+        $result = trader_cos($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Trigonometric Cosh.
@@ -1079,7 +1556,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function cosh(array $real): array;
+    public function cosh(array $real): array
+    {
+        $result = trader_cosh($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Double Exponential Moving Average.
@@ -1088,7 +1572,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function dema(array $real, int $timePeriod = 30): array;
+    public function dema(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_dema($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Arithmetic Div.
@@ -1099,7 +1590,14 @@ interface IndicatorContract
      * @param  array  $real1  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function div(array $real0, array $real1): array;
+    public function div(array $real0, array $real1): array
+    {
+        $result = trader_div($real0, $real1);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Directional Movement Index.
@@ -1110,7 +1608,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function dx(array $high, array $low, array $close, int $timePeriod = 14): array;
+    public function dx(array $high, array $low, array $close, int $timePeriod = 14): array
+    {
+        $result = trader_dx($high, $low, $close, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Exponential Moving Average.
@@ -1119,7 +1624,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function ema(array $real, int $timePeriod = 30): array;
+    public function ema(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_ema($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Get error code.
@@ -1128,7 +1640,10 @@ interface IndicatorContract
      *
      * @return int Returns the error code identified by one of the ERR_* constants.
      */
-    public function errno(): int;
+    public function errno(): int
+    {
+        return trader_errno();
+    }
 
     /**
      * Vector Arithmetic Exp.
@@ -1138,7 +1653,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function exp(array $real): array;
+    public function exp(array $real): array
+    {
+        $result = trader_exp($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Floor.
@@ -1148,7 +1670,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function floor(array $real): array;
+    public function floor(array $real): array
+    {
+        $result = trader_floor($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Get compatibility mode.
@@ -1157,7 +1686,10 @@ interface IndicatorContract
      *
      * @return int Returns the compatibility mode id which can be identified by COMPATIBILITY_* series of constants.
      */
-    public function get_compat(): int;
+    public function get_compat(): int
+    {
+        return trader_get_compat();
+    }
 
     /**
      * Get unstable period.
@@ -1167,7 +1699,10 @@ interface IndicatorContract
      * @param  int  $functionId  Function ID the factor to be read for. FUNC_UNST_* series of constants should be used.
      * @return int Returns the unstable period factor for the corresponding function.
      */
-    public function get_unstable_period(int $functionId): int;
+    public function get_unstable_period(int $functionId): int
+    {
+        return trader_get_unstable_period($functionId);
+    }
 
     /**
      * Hilbert Transform - Dominant Cycle Period.
@@ -1175,7 +1710,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function ht_dcperiod(array $real): array;
+    public function ht_dcperiod(array $real): array
+    {
+        $result = trader_ht_dcperiod($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Hilbert Transform - Dominant Cycle Phase.
@@ -1183,7 +1725,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function ht_dcphase(array $real): array;
+    public function ht_dcphase(array $real): array
+    {
+        $result = trader_ht_dcphase($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Hilbert Transform - Phasor Components.
@@ -1191,7 +1740,14 @@ interface IndicatorContract
      * @param  array  $open  Opening price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function ht_phasor(array $open): array;
+    public function ht_phasor(array $open): array
+    {
+        $result = trader_ht_phasor($open);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Hilbert Transform - Phasor Components.
@@ -1199,7 +1755,14 @@ interface IndicatorContract
      * @param  array  $open  Opening price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function ht_sine(array $open): array;
+    public function ht_sine(array $open): array
+    {
+        $result = trader_ht_sine($open);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Hilbert Transform - Instantaneous Trendline.
@@ -1207,7 +1770,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function ht_trendline(array $real): array;
+    public function ht_trendline(array $real): array
+    {
+        $result = trader_ht_trendline($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Hilbert Transform - Trend vs Cycle Mode.
@@ -1215,7 +1785,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function ht_trendmode(array $real): array;
+    public function ht_trendmode(array $real): array
+    {
+        $result = trader_ht_trendmode($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Kaufman Adaptive Moving Average.
@@ -1224,7 +1801,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function kama(array $real, int $timePeriod = 30): array;
+    public function kama(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_kama($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Linear Regression Angle.
@@ -1233,7 +1817,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function linearreg_angle(array $real, int $timePeriod = 14): array;
+    public function linearreg_angle(array $real, int $timePeriod = 14): array
+    {
+        $result = trader_linearreg_angle($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Linear Regression Angle.
@@ -1242,7 +1833,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function linearreg_intercept(array $real, int $timePeriod = 14): array;
+    public function linearreg_intercept(array $real, int $timePeriod = 14): array
+    {
+        $result = trader_linearreg_intercept($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Linear Regression Slope.
@@ -1251,7 +1849,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function linearreg_slope(array $real, int $timePeriod = 14): array;
+    public function linearreg_slope(array $real, int $timePeriod = 14): array
+    {
+        $result = trader_linearreg_slope($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Linear Regression.
@@ -1260,7 +1865,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function linearreg(array $real, int $timePeriod = 14): array;
+    public function linearreg(array $real, int $timePeriod = 14): array
+    {
+        $result = trader_linearreg($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Log Natural.
@@ -1270,7 +1882,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function ln(array $real): array;
+    public function ln(array $real): array
+    {
+        $result = trader_ln($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Log10.
@@ -1280,7 +1899,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function log10(array $real): array;
+    public function log10(array $real): array
+    {
+        $result = trader_log10($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Moving average.
@@ -1290,7 +1916,14 @@ interface IndicatorContract
      * @param  int  $mAType  Type of Moving Average. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
-    public function ma(array $real, int $timePeriod = 30, int $mAType = 0): array;
+    public function ma(array $real, int $timePeriod = 30, int $mAType = 0): array
+    {
+        $result = trader_ma($real, $timePeriod, $mAType);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Moving Average Convergence/Divergence.
@@ -1306,7 +1939,13 @@ interface IndicatorContract
         int $fastPeriod = 12,
         int $slowPeriod = 26,
         int $signalPeriod = 9
-    ): array;
+    ): array {
+        $result = trader_macd($real, $fastPeriod, $slowPeriod, $signalPeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Moving Average Convergence/Divergence with controllable Moving Average type.
@@ -1326,7 +1965,13 @@ interface IndicatorContract
         int $slowPeriod = 26,
         int $slowMAType = 0,
         int $signalPeriod = 9
-    ): array;
+    ): array {
+        $result = trader_macdext($real, $fastPeriod, $fastMAType, $slowPeriod, $slowMAType, $signalPeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Moving Average Convergence/Divergence Fix 12/26.
@@ -1335,7 +1980,14 @@ interface IndicatorContract
      * @param  int  $signalPeriod  Smoothing for the signal line (nb of period). Valid range from 1 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function macdfix(array $real, int $signalPeriod = 9): array;
+    public function macdfix(array $real, int $signalPeriod = 9): array
+    {
+        $result = trader_macdfix($real, $signalPeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * MESA Adaptive Moving Average.
@@ -1345,7 +1997,14 @@ interface IndicatorContract
      * @param  float  $slowLimit  Lower limit use in the adaptive algorithm. Valid range from 0.01 to 0.99.
      * @return array Returns an array with calculated data.
      */
-    public function mama(array $real, float $fastLimit = 0.5, float $slowLimit = 0.05): array;
+    public function mama(array $real, float $fastLimit = 0.5, float $slowLimit = 0.05): array
+    {
+        $result = trader_mama($real, $fastLimit, $slowLimit);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Moving average with variable period
@@ -1363,7 +2022,13 @@ interface IndicatorContract
         int $minPeriod = 2,
         int $maxPeriod = 30,
         int $mAType = 0
-    ): array;
+    ): array {
+        $result = trader_mavp($real, $periods, $minPeriod, $maxPeriod, $mAType);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Highest value over a specified period.
@@ -1372,7 +2037,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function max(array $real, int $timePeriod = 30): array;
+    public function max(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_max($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Index of highest value over a specified period
@@ -1381,7 +2053,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function maxindex(array $real, int $timePeriod = 30): array;
+    public function maxindex(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_maxindex($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Median Price.
@@ -1390,7 +2069,14 @@ interface IndicatorContract
      * @param  array  $low  Low price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function medprice(array $high, array $low): array;
+    public function medprice(array $high, array $low): array
+    {
+        $result = trader_medprice($high, $low);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Money Flow Index.
@@ -1402,7 +2088,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function mfi(array $high, array $low, array $close, array $volume, int $timePeriod = 14): array;
+    public function mfi(array $high, array $low, array $close, array $volume, int $timePeriod = 14): array
+    {
+        $result = trader_mfi($high, $low, $close, $volume, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * MidPoint over period.
@@ -1411,7 +2104,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function midpoint(array $real, int $timePeriod = 14): array;
+    public function midpoint(array $real, int $timePeriod = 14): array
+    {
+        $result = trader_midpoint($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Midpoint Price over period.
@@ -1421,7 +2121,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function midprice(array $high, array $low, int $timePeriod = 14): array;
+    public function midprice(array $high, array $low, int $timePeriod = 14): array
+    {
+        $result = trader_midprice($high, $low, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Lowest value over a specified period.
@@ -1430,7 +2137,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function min(array $real, int $timePeriod = 30): array;
+    public function min(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_min($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Index of lowest value over a specified period.
@@ -1439,7 +2153,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function minindex(array $real, int $timePeriod = 30): array;
+    public function minindex(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_minindex($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Lowest and highest values over a specified period.
@@ -1448,7 +2169,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function minmax(array $real, int $timePeriod = 30): array;
+    public function minmax(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_minmax($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Indexes of lowest and highest values over a specified period.
@@ -1457,7 +2185,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function minmaxindex(array $real, int $timePeriod = 30): array;
+    public function minmaxindex(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_minmaxindex($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Minus Directional Indicator.
@@ -1468,7 +2203,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function minus_di(array $high, array $low, array $close, int $timePeriod = 14): array;
+    public function minus_di(array $high, array $low, array $close, int $timePeriod = 14): array
+    {
+        $result = trader_minus_di($high, $low, $close, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Minus Directional Movement.
@@ -1478,7 +2220,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function minus_dm(array $high, array $low, int $timePeriod = 14): array;
+    public function minus_dm(array $high, array $low, int $timePeriod = 14): array
+    {
+        $result = trader_minus_dm($high, $low, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Momentum.
@@ -1487,7 +2236,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function mom(array $real, int $timePeriod = 10): array;
+    public function mom(array $real, int $timePeriod = 10): array
+    {
+        $result = trader_mom($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Arithmetic Mult.
@@ -1498,7 +2254,14 @@ interface IndicatorContract
      * @param  array  $real1  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function mult(array $real0, array $real1): array;
+    public function mult(array $real0, array $real1): array
+    {
+        $result = trader_mult($real0, $real1);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Normalized Average True Range.
@@ -1509,7 +2272,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function natr(array $high, array $low, array $close, int $timePeriod = 14): array;
+    public function natr(array $high, array $low, array $close, int $timePeriod = 14): array
+    {
+        $result = trader_natr($high, $low, $close, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * On Balance Volume.
@@ -1518,7 +2288,14 @@ interface IndicatorContract
      * @param  array  $volume  Volume traded, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function obv(array $real, array $volume): array;
+    public function obv(array $real, array $volume): array
+    {
+        $result = trader_obv($real, $volume);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Plus Directional Indicator.
@@ -1529,7 +2306,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function plus_di(array $high, array $low, array $close, int $timePeriod = 14): array;
+    public function plus_di(array $high, array $low, array $close, int $timePeriod = 14): array
+    {
+        $result = trader_plus_di($high, $low, $close, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Plus Directional Movement.
@@ -1539,7 +2323,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function plus_dm(array $high, array $low, int $timePeriod = 14): array;
+    public function plus_dm(array $high, array $low, int $timePeriod = 14): array
+    {
+        $result = trader_plus_dm($high, $low, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Percentage Price Oscillator.
@@ -1550,7 +2341,14 @@ interface IndicatorContract
      * @param  int  $mAType  Type of Moving Average. MA_TYPE_* series of constants should be used.
      * @return array Returns an array with calculated data.
      */
-    public function ppo(array $real, int $fastPeriod = 12, int $slowPeriod = 26, int $mAType = 0): array;
+    public function ppo(array $real, int $fastPeriod = 12, int $slowPeriod = 26, int $mAType = 0): array
+    {
+        $result = trader_ppo($real, $fastPeriod, $slowPeriod, $mAType);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Rate of change : ((price/prevPrice)-1)*100.
@@ -1559,7 +2357,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function roc(array $real, int $timePeriod = 10): array;
+    public function roc(array $real, int $timePeriod = 10): array
+    {
+        $result = trader_roc($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Rate of change Percentage: (price-prevPrice)/prevPrice.
@@ -1568,7 +2373,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function rocp(array $real, int $timePeriod = 10): array;
+    public function rocp(array $real, int $timePeriod = 10): array
+    {
+        $result = trader_rocp($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Rate of change ratio 100 scale: (price/prevPrice)*100.
@@ -1577,7 +2389,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function rocr100(array $real, int $timePeriod = 10): array;
+    public function rocr100(array $real, int $timePeriod = 10): array
+    {
+        $result = trader_rocr100($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Rate of change ratio: (price/prevPrice).
@@ -1586,7 +2405,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function rocr(array $real, int $timePeriod = 10): array;
+    public function rocr(array $real, int $timePeriod = 10): array
+    {
+        $result = trader_rocr($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Relative Strength Index.
@@ -1595,7 +2421,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function rsi(array $real, int $timePeriod = 14): array;
+    public function rsi(array $real, int $timePeriod = 14): array
+    {
+        $result = trader_rsi($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Parabolic SAR.
@@ -1606,7 +2439,14 @@ interface IndicatorContract
      * @param  float  $maximum  Acceleration Factor Maximum value. Valid range from 0 to REAL_MAX.
      * @return array Returns an array with calculated data.
      */
-    public function sar(array $high, array $low, float $acceleration = 0.02, float $maximum = 0.2): array;
+    public function sar(array $high, array $low, float $acceleration = 0.02, float $maximum = 0.2): array
+    {
+        $result = trader_sar($high, $low, $acceleration, $maximum);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Parabolic SAR - Extended.
@@ -1634,7 +2474,24 @@ interface IndicatorContract
         float $accelerationInitShort = 0.02,
         float $accelerationShort = 0.02,
         float $accelerationMaxShort = 0.2
-    ): array;
+    ): array {
+        $result = trader_sarext(
+            $high,
+            $low,
+            $startValue,
+            $offsetOnReverse,
+            $accelerationInitLong,
+            $accelerationLong,
+            $accelerationMaxLong,
+            $accelerationInitShort,
+            $accelerationShort,
+            $accelerationMaxShort
+        );
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Set compatibility mode.
@@ -1643,7 +2500,10 @@ interface IndicatorContract
      *
      * @param  int  $compatId  Compatibility Id. COMPATIBILITY_* series of constants should be used.
      */
-    public function set_compat(int $compatId);
+    public function set_compat(int $compatId)
+    {
+        trader_set_compat($compatId);
+    }
 
     /**
      * Set unstable period.
@@ -1653,7 +2513,10 @@ interface IndicatorContract
      * @param  int  $functionId  Function ID the factor should be set for. FUNC_UNST_* constant series can be used to affect the corresponding function.
      * @param  int  $timePeriod  Unstable period value.
      */
-    public function set_unstable_period(int $functionId, int $timePeriod);
+    public function set_unstable_period(int $functionId, int $timePeriod)
+    {
+        trader_set_unstable_period($functionId, $timePeriod);
+    }
 
     /**
      * Vector Trigonometric Sin.
@@ -1663,7 +2526,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function sin(array $real): array;
+    public function sin(array $real): array
+    {
+        $result = trader_sin($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Trigonometric Sinh.
@@ -1673,7 +2543,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function sinh(array $real): array;
+    public function sinh(array $real): array
+    {
+        $result = trader_sinh($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Simple Moving Average.
@@ -1682,7 +2559,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function sma(array $real, int $timePeriod = 30): array;
+    public function sma(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_sma($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Square Root.
@@ -1692,7 +2576,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function sqrt(array $real): array;
+    public function sqrt(array $real): array
+    {
+        $result = trader_sqrt($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Standard Deviation.
@@ -1702,7 +2593,14 @@ interface IndicatorContract
      * @param  float  $nbDev  Number of deviations
      * @return array Returns an array with calculated data.
      */
-    public function stddev(array $real, int $timePeriod = 5, float $nbDev = 1.0): array;
+    public function stddev(array $real, int $timePeriod = 5, float $nbDev = 1.0): array
+    {
+        $result = trader_stddev($real, $timePeriod, $nbDev);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Stochastic.
@@ -1726,7 +2624,22 @@ interface IndicatorContract
         int $slowK_MAType = 0,
         int $slowD_Period = 3,
         int $slowD_MAType = 0
-    ): array;
+    ): array {
+        $result = trader_stoch(
+            $high,
+            $low,
+            $close,
+            $fastK_Period,
+            $slowK_Period,
+            $slowK_MAType,
+            $slowD_Period,
+            $slowD_MAType
+        );
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Stochastic Fast.
@@ -1746,7 +2659,20 @@ interface IndicatorContract
         int $fastK_Period = 5,
         int $fastD_Period = 3,
         int $fastD_MAType = 0
-    ): array;
+    ): array {
+        $result = trader_stochf(
+            $high,
+            $low,
+            $close,
+            $fastK_Period,
+            $fastD_Period,
+            $fastD_MAType
+        );
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Stochastic Relative Strength Index.
@@ -1764,7 +2690,19 @@ interface IndicatorContract
         int $fastK_Period = 5,
         int $fastD_Period = 3,
         int $fastD_MAType = 0
-    ): array;
+    ): array {
+        $result = trader_stochrsi(
+            $real,
+            $timePeriod,
+            $fastK_Period,
+            $fastD_Period,
+            $fastD_MAType
+        );
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Arithmetic Subtraction.
@@ -1775,7 +2713,14 @@ interface IndicatorContract
      * @param  array  $real1  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function sub(array $real0, array $real1): array;
+    public function sub(array $real0, array $real1): array
+    {
+        $result = trader_sub($real0, $real1);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Summation.
@@ -1784,7 +2729,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function sum(array $real, int $timePeriod = 30): array;
+    public function sum(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_sum($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Triple Exponential Moving Average (T3).
@@ -1794,7 +2746,14 @@ interface IndicatorContract
      * @param  float  $vFactor  Volume Factor. Valid range from 1 to 0.
      * @return array Returns an array with calculated data.
      */
-    public function t3(array $real, int $timePeriod = 5, float $vFactor = 0.7): array;
+    public function t3(array $real, int $timePeriod = 5, float $vFactor = 0.7): array
+    {
+        $result = trader_t3($real, $timePeriod, $vFactor);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Trigonometric Tan.
@@ -1804,7 +2763,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function tan(array $real): array;
+    public function tan(array $real): array
+    {
+        $result = trader_tan($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Vector Trigonometric Tanh.
@@ -1814,7 +2780,14 @@ interface IndicatorContract
      * @param  array  $real  Array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function tanh(array $real): array;
+    public function tanh(array $real): array
+    {
+        $result = trader_tanh($real);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Triple Exponential Moving Average.
@@ -1823,7 +2796,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function tema(array $real, int $timePeriod = 30): array;
+    public function tema(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_tema($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * True Range.
@@ -1833,7 +2813,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function trange(array $high, array $low, array $close): array;
+    public function trange(array $high, array $low, array $close): array
+    {
+        $result = trader_trange($high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Triangular Moving Average.
@@ -1842,7 +2829,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function trima(array $real, int $timePeriod = 30): array;
+    public function trima(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_trima($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * 1-day Rate-Of-Change (ROC) of a Triple Smooth EMA.
@@ -1851,7 +2845,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  [OPTIONAL] [DEFAULT 30] Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function trix(array $real, int $timePeriod = 30): array;
+    public function trix(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_trix($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Time Series Forecast.
@@ -1860,7 +2861,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function tsf(array $real, int $timePeriod = 14): array;
+    public function tsf(array $real, int $timePeriod = 14): array
+    {
+        $result = trader_tsf($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Typical Price.
@@ -1870,7 +2878,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function typprice(array $high, array $low, array $close): array;
+    public function typprice(array $high, array $low, array $close): array
+    {
+        $result = trader_typprice($high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Ultimate Oscillator.
@@ -1890,7 +2905,13 @@ interface IndicatorContract
         int $timePeriod1 = 7,
         int $timePeriod2 = 14,
         int $timePeriod3 = 28
-    ): array;
+    ): array {
+        $result = trader_ultosc($high, $low, $close, $timePeriod1, $timePeriod2, $timePeriod3);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Variance.
@@ -1900,7 +2921,14 @@ interface IndicatorContract
      * @param  float  $nbDev  Number of deviations
      * @return array Returns an array with calculated data.
      */
-    public function var(array $real, int $timePeriod = 5, float $nbDev = 1.0): array;
+    public function var(array $real, int $timePeriod = 5, float $nbDev = 1.0): array
+    {
+        $result = trader_var($real, $timePeriod, $nbDev);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Weighted Close Price.
@@ -1910,7 +2938,14 @@ interface IndicatorContract
      * @param  array  $close  Closing price, array of real values.
      * @return array Returns an array with calculated data.
      */
-    public function wclprice(array $high, array $low, array $close): array;
+    public function wclprice(array $high, array $low, array $close): array
+    {
+        $result = trader_wclprice($high, $low, $close);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Williams' %R.
@@ -1921,7 +2956,14 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function willr(array $high, array $low, array $close, int $timePeriod = 14): array;
+    public function willr(array $high, array $low, array $close, int $timePeriod = 14): array
+    {
+        $result = trader_willr($high, $low, $close, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
 
     /**
      * Weighted Moving Average.
@@ -1930,5 +2972,24 @@ interface IndicatorContract
      * @param  int  $timePeriod  Number of period. Valid range from 2 to 100000.
      * @return array Returns an array with calculated data.
      */
-    public function wma(array $real, int $timePeriod = 30): array;
+    public function wma(array $real, int $timePeriod = 30): array
+    {
+        $result = trader_wma($real, $timePeriod);
+
+        $this->handleErrors();
+
+        return $result;
+    }
+
+    /**
+     * Handle errors.
+     */
+    protected function handleErrors(): void
+    {
+        $errorCode = trader_errno();
+
+        if (isset(static::$errors[$errorCode])) {
+            throw new BadFunctionCallException(static::$errors[$errorCode], $errorCode);
+        }
+    }
 }
