@@ -10,14 +10,24 @@
 
 ## About X-Trader
 
-X-Trader is a robust Laravel application template designed for creating and executing algorithmic trading strategies. It enables users to automate their trading decisions based on customizable rules and conditions, streamlining the trading process and enhancing efficiency.
+X-Trader is a Laravel application template for creating and executing algorithmic trading strategies. It automates trading decisions based on customizable rules, enhancing efficiency.
 
 ### Key Features
 
-In its upcoming release [1.0.0 (not released)](https://github.com/timirey/x-trader-laravel/releases/tag/1.0.0), X-Trader will offer the following features:
+In its upcoming release [1.0.0 (not released)](https://github.com/timirey/x-trader-laravel/releases/tag/1.0.0), X-Trader will offer:
 
-* **Indicator Template:** Easily create and configure any technical indicators you need for your trading strategies.
-* **Strategy Template:** Combine indicators, signals, and other custom settings to develop comprehensive trading strategies.
-* **Flexible Data Sources:** Configure any data source to suit your needs. Out of the box, X-Trader is compatible with the XTB broker, providing seamless data integration.
+* **Indicator Template**: Create and configure technical indicators.
+* **Strategy Template**: Combine indicators, signals, and custom settings.
+* **Flexible Data Sources**: Configure any data source; compatible with the XTB broker out of the box.
 
-These features make X-Trader a powerful tool for both novice and experienced traders looking to automate and optimize their trading strategies.
+### Future Plans
+
+Future plans for X-Trader include:
+
+* **Hosting and Monitoring**: Monitor real-time data and apply strategies automatically.
+* **Notification Channels**: Get alerts via Telegram, SMS, and email for transactions.
+* **Back-Testing**: Evaluate strategies using historical data.
+* **Visual Interface**: User-friendly interface for graphs, purchase points, stop losses, etc.
+* **Providing API**: Comprehensive API for seamless integration with other systems.
+
+These enhancements will make X-Trader a versatile tool for automating and optimizing trading strategies.
