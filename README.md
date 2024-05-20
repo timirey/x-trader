@@ -14,7 +14,7 @@ X-Trader is a robust Laravel application template designed for creating and exec
 
 ### Key Features
 
-With the release of version 1.0.0, X-Trader offers the following features:
+In its upcoming release 1.00, X-Trader will offer the following features:
 
 * **Indicator Template:** Easily create and configure any technical indicators you need for your trading strategies.
 * **Strategy Template:** Combine indicators, signals, and other custom settings to develop comprehensive trading strategies.
