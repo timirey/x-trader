@@ -26,7 +26,5 @@ class BrokerServiceProvider extends ServiceProvider
         $this->app->when(Broker::class)
             ->needs(BrokerCommandContract::class)
             ->give(BrokerCommand::class);
-
-        dd(Broker::getCommandor);
     }
 }
