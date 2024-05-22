@@ -14,16 +14,16 @@ class TraderServiceProvider extends ServiceProvider implements DeferrableProvide
      */
     public function register(): void
     {
-        $this->app->singleton('trader', fn () => new Trader());
+        $this->app->singleton(TraderContract::class, fn () => new Trader());
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function provides(): array
-    {
-        return [
-            TraderContract::class,
-        ];
-    }
+    //    /**
+    //     * {@inheritdoc}
+    //     */
+    //    public function provides(): array
+    //    {
+    //        return [
+    //            TraderContract::class,
+    //        ];
+    //    }
 }

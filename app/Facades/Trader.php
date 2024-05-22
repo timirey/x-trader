@@ -2,6 +2,7 @@
 
 namespace App\Facades;
 
+use App\Contracts\TraderContract;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -168,8 +169,6 @@ use Illuminate\Support\Facades\Facade;
  * @method static array wclprice(array $high, array $low, array $close)
  * @method static array willr(array $high, array $low, array $close, int $timePeriod = 14)
  * @method static array wma(array $real, int $timePeriod = 30)
- *
- * @see \App\Contracts\TraderContract
  */
 class Trader extends Facade
 {
@@ -178,6 +177,6 @@ class Trader extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return 'trader';
+        return TraderContract::class;
     }
 }

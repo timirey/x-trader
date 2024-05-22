@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Contracts\BrokerAuthenticationContract;
 use App\Contracts\BrokerCommandContract;
 use App\Contracts\BrokerContract;
-use App\Facades\Broker;
+use App\Services\Brokers\xStation\Broker;
 use App\Services\Brokers\xStation\BrokerAuthentication;
 use App\Services\Brokers\xStation\BrokerCommand;
 use Illuminate\Support\ServiceProvider;

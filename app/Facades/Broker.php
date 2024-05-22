@@ -10,8 +10,6 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static BrokerAuthenticationContract getAuthenticator()
  * @method static BrokerCommandContract getCommand()
- *
- * @see BrokerContract
  */
 class Broker extends Facade
 {
