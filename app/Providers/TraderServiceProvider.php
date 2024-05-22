@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Contracts\TraderContract;
-use App\Services\TraderService;
+use App\Services\Trader;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
@@ -14,7 +14,7 @@ class TraderServiceProvider extends ServiceProvider implements DeferrableProvide
      */
     public function register(): void
     {
-        $this->app->singleton('trader', fn () => new TraderService());
+        $this->app->singleton('trader', fn () => new Trader());
     }
 
     /**

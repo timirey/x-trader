@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Indicators;
+namespace App\Services\Indicators;
 
-final class RSI extends Indicator
+use App\Abstracts\AbstractIndicator;
+
+final class RSI extends AbstractIndicator
 {
     protected array $config = [
         'timePeriod' => 14,

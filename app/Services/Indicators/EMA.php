@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Indicators;
+namespace App\Services\Indicators;
 
-final class EMA extends Indicator
+use App\Abstracts\AbstractIndicator;
+
+final class EMA extends AbstractIndicator
 {
     protected array $config = [
         'timePeriod' => 8,

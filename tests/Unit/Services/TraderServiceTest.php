@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\TraderService;
+use App\Services\Trader;
 
 beforeEach(function () {
     $ohlcv = include 'tests/Fixtures/ohlcv.php';
@@ -11,7 +11,7 @@ beforeEach(function () {
     $this->close = array_column($ohlcv, 'close');
     $this->volume = array_column($ohlcv, 'volume');
 
-    $this->trader = new TraderService();
+    $this->trader = new Trader();
 });
 
 it('provides correct constant values', function () {
