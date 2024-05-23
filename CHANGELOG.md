@@ -1,5 +1,18 @@
 # Release Notes
 
+## [0.3.0](https://github.com/timirey/x-trader/compare/0.2.1...0.3.0) - 2020-05-23
+
+* Prepare broker abstractions and service provider.
+* Update abstraction for trader service and indicators.
+* Fixed facades' accesors to be ::class instead of string.
+* Added more integration tests.
+
+## [0.2.1](https://github.com/timirey/x-trader/compare/0.2.0...0.2.1) - 2020-05-20
+
+* Fixed trader helper to support more native indicators.
+* Added contract for indicator, now creation of custom indicator is available.
+* Added more unit tests.
+
 ## [0.2.0](https://github.com/timirey/x-trader/compare/0.1.0...0.2.0) - 2020-05-17
 
 * Added [Laravel Sail](https://laravel.com/docs/11.x/sail).
