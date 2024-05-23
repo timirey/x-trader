@@ -2,7 +2,13 @@
     "name": "timirey/x-trader",
     "type": "project",
     "description": "Laravel application template for creating and executing algorithmic trading strategies, allowing users to automate their trading decisions based on customizable rules and conditions.",
-    "keywords": ["php", "laravel", "trading-bot", "algoritmic-trading", "automated-trading-system"],
+    "keywords": [
+        "php", 
+        "laravel", 
+        "trading-bot", 
+        "algoritmic-trading", 
+        "automated-trading-system"
+    ],
     "license": "MIT",
     "authors": [
         {
