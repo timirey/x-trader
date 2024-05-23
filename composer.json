@@ -4,6 +4,13 @@
     "description": "Laravel application template for creating and executing algorithmic trading strategies, allowing users to automate their trading decisions based on customizable rules and conditions.",
     "keywords": ["php", "laravel", "trading-bot", "algoritmic-trading", "automated-trading-system"],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Artiom Misiru",
+            "email": "misiru.artiom@gmail.com",
+            "role": "Certified Web Developer"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "laravel/framework": "^11.0",
