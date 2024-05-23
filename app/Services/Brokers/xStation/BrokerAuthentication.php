@@ -2,8 +2,8 @@
 
 namespace App\Services\Brokers\xStation;
 
-use App\Contracts\BrokerAuthenticationContract;
+use App\Abstracts\AbstractBrokerAuthentication;
 
-class BrokerAuthentication implements BrokerAuthenticationContract
+class BrokerAuthentication extends AbstractBrokerAuthentication
 {
 }

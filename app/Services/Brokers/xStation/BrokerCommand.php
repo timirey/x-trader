@@ -2,8 +2,8 @@
 
 namespace App\Services\Brokers\xStation;
 
-use App\Contracts\BrokerCommandContract;
+use App\Abstracts\AbstractBrokerCommand;
 
-class BrokerCommand implements BrokerCommandContract
+class BrokerCommand extends AbstractBrokerCommand
 {
 }
