@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/timirey/x-trader/assets/15349915/8304202f-4e73-42cc-adcb-9a144f659eb5">
+<img width="128" src="https://github.com/timirey/x-trader/assets/15349915/153211d7-4720-40de-b0b4-300df5f7d02c">
 </p>
 
 <p align="center">
