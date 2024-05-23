@@ -1,5 +1,9 @@
 # Release Notes
 
+## [0.3.0](https://github.com/timirey/x-trader/compare/0.3.0...0.3.1) - 2020-05-23
+
+* Fixed resolving WWWUSER and WWWGROUP for non-sail startups.
+
 ## [0.3.0](https://github.com/timirey/x-trader/compare/0.2.1...0.3.0) - 2020-05-23
 
 * Prepare broker abstractions and service provider.
