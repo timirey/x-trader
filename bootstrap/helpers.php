@@ -1,11 +1,19 @@
 <?php
 
+use App\Contracts\BrokerContract;
 use App\Contracts\TraderContract;
 
 if (! function_exists('trader')) {
-    function indicator(): TraderContract
+    function trader(): TraderContract
     {
         return app(TraderContract::class);
+    }
+}
+
+if (! function_exists('broker')) {
+    function broker(): BrokerContract
+    {
+        return app(BrokerContract::class);
     }
 }
 
