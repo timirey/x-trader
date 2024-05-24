@@ -17,7 +17,7 @@ class BrokerServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->bind(BrokerContract::class, Broker::class);
+        $this->app->singleton(BrokerContract::class, Broker::class);
 
         $this->app->when(Broker::class)
             ->needs(BrokerAuthenticationContract::class)
