@@ -48,11 +48,6 @@ jobs:
     needs: build
 
     steps:
-      - name: Download artifact
-        uses: actions/download-pages-artifact@v3
-        with:
-          name: jekyll-pages
-
       - name: Deploy pages
         id: deployment
         uses: actions/deploy-pages@v4
