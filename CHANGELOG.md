@@ -1,5 +1,9 @@
 # Release Notes
 
+## [0.3.2](https://github.com/timirey/x-trader/compare/0.3.1...0.3.2) - 2020-05-24
+
+* Replaced broker service to act as singleton.
+
 ## [0.3.1](https://github.com/timirey/x-trader/compare/0.3.0...0.3.1) - 2020-05-23
 
 * Fixed resolving WWWUSER and WWWGROUP for non-sail startups.
