@@ -54,24 +54,19 @@
     <nav class="flex ml-10 mt-7 md:fixed lg:fixed" data-spy="affix" data-offset-top="300" data-offset-bottom="200"
          role="navigation">
         <ul class="nav">
-            <li class="font-medium"><a href="#link1">Getting Started</a></li>
             <li class="font-medium">
-                <a href="#link2">Installation</a>
+                <a href="#link1">Getting Started</a>
                 <ul class="nav">
                     <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
-                        <a href="#link2_1">Sail</a>
-                    </li>
-                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
-                        <a href="#link2_2">Docker</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="font-medium"><a href="#link3">Configuration</a></li>
-            <li class="font-medium">
-                <a href="#link4">Components</a>
-                <ul class="nav">
-                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
-                        <a href="#link4_1">Indicator</a>
+                        <a href="#link1_1">Installation</a>
+                        <ul class="nav">
+                            <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                                <a href="#link1_1_1">Sail</a>
+                            </li>
+                            <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                                <a href="#link1_1_2">Docker</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </li>
@@ -80,81 +75,42 @@
     <!-- Side Menu ends here -->
 
     <div class="pl-5 md:pl-[250px] lg:pl-[250px]">
-        <!-- Link1 start -->
+        <!-- Link1 Start -->
         <section id="link1">
-            <div class="h-full mt-10">
+            <div class="h-full mt-5">
                 <p class="font-normal text-2xl">Getting Started</p>
-                <p class="leading-0 w-3/4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-                    quae similique nostrum, laborum, velit beatae esse nobis dolorem
-                    saepe quas iste provident iusto assumenda facilis quisquam enim
-                    quo. Beatae, fuga!
-                </p>
-                <p class="text-sm pt-5 pb-4">Small Description</p>
+                <p class="text-sm pb-4">This app is very easy to run on any machine or host.</p>
             </div>
-        </section>
-        <!-- Link1 end -->
-
-        <!-- Link2 Start -->
-        <section id="link2">
-            <div class="h-full mt-5">
-                <p class="font-normal text-2xl">Installation</p>
-                <p class="text-sm pb-4">Small Description</p>
-            </div>
-            <section id="link2_1" class="border-l-[2px]">
-                <div class="h-full mt-3 ml-5">
-                    <p class="font-normal text-xl">Sail</p>
-                    <p class="text-sm pb-4">Fork and clone the github repository.</p>
-                    <script src="https://gist.github.com/lmas3009/1de9a377390e49e4b7071a413112c679.js"></script>
+            <section id="link1_1" class="border-l-[2px] pl-[20px]">
+                <div class="h-full mt-3">
+                    <p class="font-normal text-2xl">Installation</p>
+                    <p class="text-sm pb-4">All you need to run the project, is <a href="https://www.docker.com" class="text-[#ea3c2d]">Docker</a>.</p>
                 </div>
-            </section>
-            <section id="link2_2" class="border-l-[2px]">
-                <div class="h-full mt-5 ml-5">
-                    <p class="font-normal text-xl">Docker</p>
-                    <p class="text-sm pb-4">Fork and clone the github repository.</p>
-                    <script src="https://gist.github.com/lmas3009/1de9a377390e49e4b7071a413112c679.js"></script>
-                </div>
+                <section id="link1_1_1" class="border-l-[2px] pl-[20px]">
+                    <div class="h-full mt-3">
+                        <p class="font-normal text-2xl">Sail</p>
+                        <p class="text-sm pb-4">Recommended way to run the project is using <a href="https://laravel.com/docs/11.x/sail" class="text-[#ea3c2d]">Sail</a>.</p>
+                        <div class="rounded bg-gray-100 overflow-x-auto p-2">
+                            <code>
+                                ./vendor/bin/sail up -d --build
+                            </code>
+                        </div>
+                    </div>
+                </section>
+                <section id="link1_1_2" class="border-l-[2px] pl-[20px]">
+                    <div class="h-full mt-3">
+                        <p class="font-normal text-2xl">Docker</p>
+                        <p class="text-sm pb-4">If you can't/don't want to run the app using <a href="https://laravel.com/docs/11.x/sail" class="text-[#ea3c2d]">Sail</a>, you can use plain <a href="https://www.docker.com" class="text-[#ea3c2d]">Docker</a>.</p>
+                        <div class="rounded bg-gray-100 overflow-x-auto p-2">
+                            <code>
+                                docker-compose up -d --build
+                            </code>
+                        </div>
+                    </div>
+                </section>
             </section>
         </section>
-        <!-- Link2 Ends -->
-
-        <!-- Link3 start -->
-        <section id="link3">
-            <div class="h-full mt-5">
-                <p class="font-normal text-2xl">Configuration</p>
-                <p class="leading-0 w-3/4">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt
-                    quae similique nostrum, laborum, velit beatae esse nobis dolorem
-                    saepe quas iste provident iusto assumenda facilis quisquam enim
-                    quo. Beatae, fuga!
-                </p>
-                <p class="text-sm pt-5 pb-4">Small Description</p>
-            </div>
-        </section>
-        <!-- Link3 end -->
-
-        <!-- Link4 start -->
-        <section id="link4">
-            <div class="h-full mt-5">
-                <p class="font-normal text-2xl">Components</p>
-                <p class="text-sm pt-2 pb-4">Components used are:</p>
-            </div>
-
-            <!-- Indicator start -->
-            <section id="link4_1" class="border-l-[2px]">
-                <div class="h-full mt-3 ml-5">
-                    <p class="font-normal text-xl">Indicator</p>
-                    <p class="text-sm pt-2 pb-4">
-                        Poppins:
-                        <a class="underline break-words" href="https://fonts.google.com/specimen/Poppins"
-                           target="_blank">https://fonts.google.com/specimen/Poppins</a>
-                    </p>
-                </div>
-            </section>
-            <!-- Indicator ends -->
-
-        </section>
-        <!-- Link4 end -->
+        <!-- Link1 Ends -->
     </div>
 </div>
 <!-- Footer starts here -->
