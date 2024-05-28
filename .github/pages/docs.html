@@ -49,7 +49,7 @@
 </header>
 <!-- Header ends here -->
 
-<div class="flex flex-col md:flex-row lg:flex-row">
+<div class="flex flex-col md:flex-row lg:flex-row mb-10">
     <!-- Side menu starts here -->
     <nav class="flex ml-10 mt-7 md:fixed lg:fixed" data-spy="affix" data-offset-top="300" data-offset-bottom="200"
          role="navigation">
@@ -68,6 +68,34 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                        <a href="#link1_2">Configuration</a>
+                    </li>
+                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                        <a href="#link1_3">Directory Structure</a>
+                        <ul class="nav">
+                            <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                                <a href="#link1_3_1">App</a>
+                                <ul class="nav">
+                                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                                        <a href="#link1_3_1_1">Abstracts</a>
+                                    </li>
+                                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                                        <a href="#link1_3_1_2">Collections</a>
+                                    </li>
+                                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                                        <a href="#link1_3_1_3">Contracts</a>
+                                    </li>
+                                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                                        <a href="#link1_3_1_4">Facades</a>
+                                    </li>
+                                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                                        <a href="#link1_3_1_5">Services</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </li>
         </ul>
@@ -75,21 +103,30 @@
     <!-- Side Menu ends here -->
 
     <div class="pl-5 md:pl-[250px] lg:pl-[250px]">
+
         <!-- Link1 Start -->
         <section id="link1">
             <div class="h-full mt-5">
-                <p class="font-normal text-2xl">Getting Started</p>
-                <p class="text-sm pb-4">This app is very easy to run on any machine or host.</p>
+                <p class="text-2xl"><span class="text-[#ea3c2d]">#</span> Getting Started</p>
+                <p class="text-sm pb-4 text-gray-700">This app is very easy to run on any machine or host.</p>
             </div>
+
+            <!-- Link 1.1 Start -->
             <section id="link1_1" class="border-l-[2px] pl-[20px]">
                 <div class="h-full mt-3">
-                    <p class="font-normal text-2xl">Installation</p>
-                    <p class="text-sm pb-4">All you need to run the project, is <a href="https://www.docker.com" class="text-[#ea3c2d]">Docker</a>.</p>
+                    <p class="text-xl"><span class="text-[#ea3c2d]">#</span> Installation</p>
+                    <p class="text-sm pb-4 text-gray-700">All you need to run the project, is <a
+                        href="https://www.docker.com"
+                        class="text-[#ea3c2d]">Docker</a>.
+                    </p>
                 </div>
+
+                <!-- Link 1.1.1 Start -->
                 <section id="link1_1_1" class="border-l-[2px] pl-[20px]">
                     <div class="h-full mt-3">
-                        <p class="font-normal text-2xl">Sail</p>
-                        <p class="text-sm pb-4">Recommended way to run the project is using <a href="https://laravel.com/docs/11.x/sail" class="text-[#ea3c2d]">Sail</a>.</p>
+                        <p class="text-l"><span class="text-[#ea3c2d]">#</span> Sail</p>
+                        <p class="text-sm pb-4 text-gray-700">Recommended way to run the project is using <a
+                            href="https://laravel.com/docs/11.x/sail" class="text-[#ea3c2d]">Sail</a>.</p>
                         <div class="rounded bg-gray-100 overflow-x-auto p-2">
                             <code>
                                 ./vendor/bin/sail up -d --build
@@ -97,10 +134,15 @@
                         </div>
                     </div>
                 </section>
+                <!-- Link 1.1.1 End -->
+
+                <!-- Link 1.1.2 Start -->
                 <section id="link1_1_2" class="border-l-[2px] pl-[20px]">
                     <div class="h-full mt-3">
-                        <p class="font-normal text-2xl">Docker</p>
-                        <p class="text-sm pb-4">If you can't/don't want to run the app using <a href="https://laravel.com/docs/11.x/sail" class="text-[#ea3c2d]">Sail</a>, you can use plain <a href="https://www.docker.com" class="text-[#ea3c2d]">Docker</a>.</p>
+                        <p class="text-l"><span class="text-[#ea3c2d]">#</span> Docker</p>
+                        <p class="text-sm pb-4 text-gray-700">If you can't/don't want to run the app using <a
+                            href="https://laravel.com/docs/11.x/sail" class="text-[#ea3c2d]">Sail</a>, you can use plain
+                            <a href="https://www.docker.com" class="text-[#ea3c2d]">Docker</a>.</p>
                         <div class="rounded bg-gray-100 overflow-x-auto p-2">
                             <code>
                                 docker-compose up -d --build
@@ -108,9 +150,93 @@
                         </div>
                     </div>
                 </section>
+                <!-- Link 1.1.2 End -->
+
             </section>
+            <!-- Link 1.1 End -->
+
+            <!-- Link 1.2 Start -->
+            <section id="link1_2" class="border-l-[2px] pl-[20px]">
+                <div class="h-full mt-3">
+                    <p class="text-xl"><span class="text-[#ea3c2d]">#</span> Configuration</p>
+                    <p class="text-sm pb-4 text-gray-700">In progress...</p>
+                </div>
+            </section>
+            <!-- Link 1.2 End -->
+
+            <!-- Link 1.3 Start -->
+            <section id="link1_3" class="border-l-[2px] pl-[20px]">
+                <div class="h-full mt-3">
+                    <p class="text-xl"><span class="text-[#ea3c2d]">#</span> Directory Structure</p>
+                    <p class="text-sm pb-4 text-gray-700">The <a
+                        href="https://laravel.com/docs/11.x/structure" class="text-[#ea3c2d]">Laravel Skeleton</a> is
+                        kept as provided out of the box. Below, the custom folders and their purposes are specified.</p>
+
+                    <!-- Link 1.3.1 Start -->
+                    <section id="link1_3_1" class="border-l-[2px] pl-[20px]">
+                        <div class="h-full mt-3">
+                            <p class="text-l"><span class="text-[#ea3c2d]">#</span> App</p>
+                            <p class="text-sm pb-4 text-gray-700">This folder contains most of the custom logic.</p>
+
+                            <!-- Link 1.3.1.1 Start -->
+                            <section id="link1_3_1_1" class="border-l-[2px] pl-[20px]">
+                                <div class="h-full mt-3">
+                                    <p><span class="text-[#ea3c2d]">#</span> Abstracts</p>
+                                    <p class="text-sm pb-4 text-gray-700">Contains partially implemented classes that
+                                        serve as base classes for other components.</p>
+                                </div>
+                            </section>
+                            <!-- Link 1.3.1.1 End -->
+
+                            <!-- Link 1.3.1.2 Start -->
+                            <section id="link1_3_1_2" class="border-l-[2px] pl-[20px]">
+                                <div class="h-full mt-3">
+                                    <p><span class="text-[#ea3c2d]">#</span> Collections</p>
+                                    <p class="text-sm pb-4 text-gray-700">Manages data chunks within Laravel, providing
+                                        utilities for data manipulation and handling.</p>
+                                </div>
+                            </section>
+                            <!-- Link 1.3.1.2 End -->
+
+                            <!-- Link 1.3.1.3 Start -->
+                            <section id="link1_3_1_3" class="border-l-[2px] pl-[20px]">
+                                <div class="h-full mt-3">
+                                    <p><span class="text-[#ea3c2d]">#</span> Contracts</p>
+                                    <p class="text-sm pb-4 text-gray-700">Holds interface definitions that are typically
+                                        resolved within service providers.</p>
+                                </div>
+                            </section>
+                            <!-- Link 1.3.1.3 End -->
+
+                            <!-- Link 1.3.1.4 Start -->
+                            <section id="link1_3_1_4" class="border-l-[2px] pl-[20px]">
+                                <div class="h-full mt-3">
+                                    <p><span class="text-[#ea3c2d]">#</span> Facades</p>
+                                    <p class="text-sm pb-4 text-gray-700">Provides a static interface to classes that
+                                        are available in the application's service container.</p>
+                                </div>
+                            </section>
+                            <!-- Link 1.3.1.4 End -->
+
+                            <!-- Link 1.3.1.5 Start -->
+                            <section id="link1_3_1_5" class="border-l-[2px] pl-[20px]">
+                                <div class="h-full mt-3">
+                                    <p><span class="text-[#ea3c2d]">#</span> Services</p>
+                                    <p class="text-sm pb-4 text-gray-700">Contains concrete classes that are often used
+                                        for binding in the service container.</p>
+                                </div>
+                            </section>
+                            <!-- Link 1.3.1.5 End -->
+
+                        </div>
+                    </section>
+                </div>
+            </section>
+            <!-- Link 1.3 End -->
+
         </section>
         <!-- Link1 Ends -->
+
     </div>
 </div>
 <!-- Footer starts here -->
