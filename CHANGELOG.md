@@ -1,8 +1,12 @@
 # Release Notes
 
+## [0.4.1](https://github.com/timirey/x-trader/compare/0.4.0...0.4.1) - 2024-05-28
+
+* Fixed few docs mistakes: https://timirey.github.io/x-trader/docs.
+
 ## [0.4.0](https://github.com/timirey/x-trader/compare/0.3.2...0.4.0) - 2024-05-28
 
-* Launched landing page: https://timirey.github.io/x-trader
+* Launched landing page: https://timirey.github.io/x-trader.
 
 ## [0.3.2](https://github.com/timirey/x-trader/compare/0.3.1...0.3.2) - 2024-05-24
 
