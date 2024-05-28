@@ -19,9 +19,15 @@
     <!-- You can add your own fonts from fonts.google.com -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>
 
+    <!-- External styles -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.min.css" rel="stylesheet"/>
+
     <!-- Default Script tags -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./public/js/index.js"></script>
+
+    <!-- External Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
 
     <!-- Replace the title name -->
     <title>X-Trader Docs</title>
@@ -49,7 +55,7 @@
 </header>
 <!-- Header ends here -->
 
-<div class="flex flex-col md:flex-row lg:flex-row mb-10">
+<div class="flex flex-col md:flex-row lg:flex-row">
     <!-- Side menu starts here -->
     <nav class="flex ml-10 mt-7 md:fixed lg:fixed" data-spy="affix" data-offset-top="300" data-offset-bottom="200"
          role="navigation">
@@ -70,31 +76,14 @@
                     </li>
                     <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
                         <a href="#link1_2">Configuration</a>
+                        <ul class="nav">
+                            <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
+                                <a href="#link1_2_1">Broker</a>
+                            </li>
+                        </ul>
                     </li>
                     <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
                         <a href="#link1_3">Directory Structure</a>
-                        <ul class="nav">
-                            <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
-                                <a href="#link1_3_1">App</a>
-                                <ul class="nav">
-                                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
-                                        <a href="#link1_3_1_1">Abstracts</a>
-                                    </li>
-                                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
-                                        <a href="#link1_3_1_2">Collections</a>
-                                    </li>
-                                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
-                                        <a href="#link1_3_1_3">Contracts</a>
-                                    </li>
-                                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
-                                        <a href="#link1_3_1_4">Facades</a>
-                                    </li>
-                                    <li class="text-[#111] pl-[20px] font-[400] border-l-[2px]">
-                                        <a href="#link1_3_1_5">Services</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
                     </li>
                 </ul>
             </li>
@@ -105,29 +94,29 @@
     <div class="pl-5 md:pl-[250px] lg:pl-[250px]">
 
         <!-- Link1 Start -->
-        <section id="link1">
+        <section id="link1" class="mb-[60px]">
             <div class="h-full mt-5">
                 <p class="text-2xl"><span class="text-[#ea3c2d]">#</span> Getting Started</p>
-                <p class="text-sm pb-4 text-gray-700">This app is very easy to run on any machine or host.</p>
+                <p class="text-sm text-gray-700">This app is very easy to run on any machine or host.</p>
             </div>
 
             <!-- Link 1.1 Start -->
-            <section id="link1_1" class="border-l-[2px] pl-[20px]">
+            <section id="link1_1" class="border-l-[2px] pl-[20px] mb-[30px]">
                 <div class="h-full mt-3">
                     <p class="text-xl"><span class="text-[#ea3c2d]">#</span> Installation</p>
-                    <p class="text-sm pb-4 text-gray-700">All you need to run the project, is <a
-                        href="https://www.docker.com"
+                    <p class="text-sm text-gray-700">All you need to run the project, is <a
+                        href="https://www.docker.com" d
                         class="text-[#ea3c2d]">Docker</a>.
                     </p>
                 </div>
 
                 <!-- Link 1.1.1 Start -->
-                <section id="link1_1_1" class="border-l-[2px] pl-[20px]">
+                <section id="link1_1_1" class="border-l-[2px] pl-[20px] mb-[15px]">
                     <div class="h-full mt-3">
-                        <p class="text-l"><span class="text-[#ea3c2d]">#</span> Sail</p>
-                        <p class="text-sm pb-4 text-gray-700">Recommended way to run the project is using <a
+                        <p><span class="text-[#ea3c2d]">#</span> Sail</p>
+                        <p class="text-sm text-gray-700">Recommended way to run the project is using <a
                             href="https://laravel.com/docs/11.x/sail" class="text-[#ea3c2d]">Sail</a>.</p>
-                        <div class="rounded bg-gray-100 overflow-x-auto p-2">
+                        <div class="rounded bg-gray-100 overflow-x-auto p-2 text-sm">
                             <code>
                                 ./vendor/bin/sail up -d --build
                             </code>
@@ -137,13 +126,13 @@
                 <!-- Link 1.1.1 End -->
 
                 <!-- Link 1.1.2 Start -->
-                <section id="link1_1_2" class="border-l-[2px] pl-[20px]">
+                <section id="link1_1_2" class="border-l-[2px] pl-[20px] mb-[15px]">
                     <div class="h-full mt-3">
-                        <p class="text-l"><span class="text-[#ea3c2d]">#</span> Docker</p>
-                        <p class="text-sm pb-4 text-gray-700">If you can't/don't want to run the app using <a
+                        <p><span class="text-[#ea3c2d]">#</span> Docker</p>
+                        <p class="text-sm text-gray-700">If you can't/don't want to run the app using <a
                             href="https://laravel.com/docs/11.x/sail" class="text-[#ea3c2d]">Sail</a>, you can use plain
                             <a href="https://www.docker.com" class="text-[#ea3c2d]">Docker</a>.</p>
-                        <div class="rounded bg-gray-100 overflow-x-auto p-2">
+                        <div class="rounded bg-gray-100 overflow-x-auto p-2 text-sm">
                             <code>
                                 docker-compose up -d --build
                             </code>
@@ -156,80 +145,120 @@
             <!-- Link 1.1 End -->
 
             <!-- Link 1.2 Start -->
-            <section id="link1_2" class="border-l-[2px] pl-[20px]">
+            <section id="link1_2" class="border-l-[2px] pl-[20px] mb-[30px]">
                 <div class="h-full mt-3">
                     <p class="text-xl"><span class="text-[#ea3c2d]">#</span> Configuration</p>
-                    <p class="text-sm pb-4 text-gray-700">In progress...</p>
+                    <p class="text-sm text-gray-700">For optimal configuration, please check <a
+                        href="https://laravel.com/docs/11.x/configuration" class="text-[#ea3c2d]">Laravel
+                        Configuration</a> docs.</p>
                 </div>
+
+                <!-- Link 1.2.1 Start -->
+                <section id="link1_2_1" class="border-l-[2px] pl-[20px] mb-[15px]">
+                    <div class="h-full mt-3">
+                        <p><span class="text-[#ea3c2d]">#</span> Broker</p>
+                        <p class="text-sm text-gray-700">
+                            For dynamic configuration, project uses <a href="https://laravel.com/docs/11.x/container"
+                                                                       class="text-[#ea3c2d]">Laravel Service
+                            Container</a>.
+                        </p>
+                        <div class="rounded bg-gray-100 overflow-x-auto p-2 text-sm mt-3">
+<pre><code>use App\Contracts\BrokerAuthenticationContract;
+use App\Contracts\BrokerCommandContract;
+use App\Contracts\BrokerContract;
+use App\Services\Brokers\xStation\Broker;
+use App\Services\Brokers\xStation\BrokerAuthentication;
+use App\Services\Brokers\xStation\BrokerCommand;
+use Illuminate\Support\ServiceProvider;
+
+class BrokerServiceProvider extends ServiceProvider
+{
+    public function register(): void
+    {
+        $this->app->singleton(BrokerContract::class, Broker::class);
+
+        $this->app->when(Broker::class)
+            ->needs(BrokerAuthenticationContract::class)
+            ->give(BrokerAuthentication::class);
+
+        $this->app->when(Broker::class)
+            ->needs(BrokerCommandContract::class)
+            ->give(BrokerCommand::class);
+    }
+}
+</code></pre>
+                        </div>
+                        <p class="text-sm text-gray-700 mt-3">
+                            Implementations are situated in <span class="text-[#ea3c2d]">app/Services/Brokers</span>
+                            folder.</br></br>
+                            Default broker is <a href="https://www.xtb.com" class="text-[#ea3c2d]">xStation</a>, which
+                            works out of the box.
+                        </p>
+                    </div>
+                </section>
+                <!-- Link 1.2.1 End -->
+
             </section>
             <!-- Link 1.2 End -->
 
             <!-- Link 1.3 Start -->
-            <section id="link1_3" class="border-l-[2px] pl-[20px]">
+            <section id="link1_3" class="border-l-[2px] pl-[20px] mb-[30px]">
                 <div class="h-full mt-3">
                     <p class="text-xl"><span class="text-[#ea3c2d]">#</span> Directory Structure</p>
-                    <p class="text-sm pb-4 text-gray-700">The <a
+                    <p class="text-sm text-gray-700">The <a
                         href="https://laravel.com/docs/11.x/structure" class="text-[#ea3c2d]">Laravel Skeleton</a> is
                         kept as provided out of the box. Below, the custom folders and their purposes are specified.</p>
 
                     <!-- Link 1.3.1 Start -->
-                    <section id="link1_3_1" class="border-l-[2px] pl-[20px]">
+                    <section id="link1_3_1" class="border-l-[2px] pl-[20px] mb-[15px]">
                         <div class="h-full mt-3">
-                            <p class="text-l"><span class="text-[#ea3c2d]">#</span> App</p>
-                            <p class="text-sm pb-4 text-gray-700">This folder contains most of the custom logic.</p>
-
-                            <!-- Link 1.3.1.1 Start -->
-                            <section id="link1_3_1_1" class="border-l-[2px] pl-[20px]">
-                                <div class="h-full mt-3">
-                                    <p><span class="text-[#ea3c2d]">#</span> Abstracts</p>
-                                    <p class="text-sm pb-4 text-gray-700">Contains partially implemented classes that
-                                        serve as base classes for other components.</p>
-                                </div>
-                            </section>
-                            <!-- Link 1.3.1.1 End -->
-
-                            <!-- Link 1.3.1.2 Start -->
-                            <section id="link1_3_1_2" class="border-l-[2px] pl-[20px]">
-                                <div class="h-full mt-3">
-                                    <p><span class="text-[#ea3c2d]">#</span> Collections</p>
-                                    <p class="text-sm pb-4 text-gray-700">Manages data chunks within Laravel, providing
-                                        utilities for data manipulation and handling.</p>
-                                </div>
-                            </section>
-                            <!-- Link 1.3.1.2 End -->
-
-                            <!-- Link 1.3.1.3 Start -->
-                            <section id="link1_3_1_3" class="border-l-[2px] pl-[20px]">
-                                <div class="h-full mt-3">
-                                    <p><span class="text-[#ea3c2d]">#</span> Contracts</p>
-                                    <p class="text-sm pb-4 text-gray-700">Holds interface definitions that are typically
-                                        resolved within service providers.</p>
-                                </div>
-                            </section>
-                            <!-- Link 1.3.1.3 End -->
-
-                            <!-- Link 1.3.1.4 Start -->
-                            <section id="link1_3_1_4" class="border-l-[2px] pl-[20px]">
-                                <div class="h-full mt-3">
-                                    <p><span class="text-[#ea3c2d]">#</span> Facades</p>
-                                    <p class="text-sm pb-4 text-gray-700">Provides a static interface to classes that
-                                        are available in the application's service container.</p>
-                                </div>
-                            </section>
-                            <!-- Link 1.3.1.4 End -->
-
-                            <!-- Link 1.3.1.5 Start -->
-                            <section id="link1_3_1_5" class="border-l-[2px] pl-[20px]">
-                                <div class="h-full mt-3">
-                                    <p><span class="text-[#ea3c2d]">#</span> Services</p>
-                                    <p class="text-sm pb-4 text-gray-700">Contains concrete classes that are often used
-                                        for binding in the service container.</p>
-                                </div>
-                            </section>
-                            <!-- Link 1.3.1.5 End -->
-
+                            <p>app/Abstracts</p>
+                            <p class="text-sm text-gray-700">Contains partially implemented classes that
+                                serve as base classes for other components.</p>
                         </div>
                     </section>
+                    <!-- Link 1.3.1 End -->
+
+                    <!-- Link 1.3.2 Start -->
+                    <section id="link1_3_2" class="border-l-[2px] pl-[20px] mb-[15px]">
+                        <div class="h-full mt-3">
+                            <p>app/Collections</p>
+                            <p class="text-sm text-gray-700">Manages data chunks within Laravel, providing
+                                utilities for data manipulation and handling.</p>
+                        </div>
+                    </section>
+                    <!-- Link 1.3.2 End -->
+
+                    <!-- Link 1.3.3 Start -->
+                    <section id="link1_3_3" class="border-l-[2px] pl-[20px] mb-[15px]">
+                        <div class="h-full mt-3">
+                            <p>app/Contracts</p>
+                            <p class="text-sm text-gray-700">Holds interface definitions that are typically
+                                resolved within service providers.</p>
+                        </div>
+                    </section>
+                    <!-- Link 1.3.3 End -->
+
+                    <!-- Link 1.3.4 Start -->
+                    <section id="link1_3_4" class="border-l-[2px] pl-[20px]">
+                        <div class="h-full mt-3">
+                            <p>app/Facades</p>
+                            <p class="text-sm text-gray-700">Provides a static interface to classes that
+                                are available in the application's service container.</p>
+                        </div>
+                    </section>
+                    <!-- Link 1.3.4 End -->
+
+                    <!-- Link 1.3.5 Start -->
+                    <section id="link1_3_5" class="border-l-[2px] pl-[20px] mb-[15px]">
+                        <div class="h-full mt-3">
+                            <p>app/Services</p>
+                            <p class="text-sm text-gray-700">Contains concrete classes that are often used
+                                for binding in the service container.</p>
+                        </div>
+                    </section>
+                    <!-- Link 1.3.5 End -->
+
                 </div>
             </section>
             <!-- Link 1.3 End -->
