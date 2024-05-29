@@ -1,7 +1,7 @@
 <?php
 
-use App\Abstracts\AbstractBroker;
+use App\Contracts\BrokerContract;
 
 it('provides broker() helper method', function () {
-    expect(broker())->toBeInstanceOf(AbstractBroker::class);
+    expect(broker())->toBeInstanceOf(BrokerContract::class);
 });

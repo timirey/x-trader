@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Contracts\TraderContract;
 use BadFunctionCallException;
 
-class Trader implements TraderContract
+class TraderService implements TraderContract
 {
     /**
      * The error messages.

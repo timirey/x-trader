@@ -2,12 +2,8 @@
 
 namespace App\Providers;
 
-use App\Contracts\BrokerAuthenticationContract;
-use App\Contracts\BrokerCommandContract;
+use App\Brokers\XTB;
 use App\Contracts\BrokerContract;
-use App\Services\Brokers\xStation\Broker;
-use App\Services\Brokers\xStation\BrokerAuthentication;
-use App\Services\Brokers\xStation\BrokerCommand;
 use Illuminate\Support\ServiceProvider;
 
 class BrokerServiceProvider extends ServiceProvider
@@ -17,14 +13,18 @@ class BrokerServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(BrokerContract::class, Broker::class);
-
-        $this->app->when(Broker::class)
-            ->needs(BrokerAuthenticationContract::class)
-            ->give(BrokerAuthentication::class);
-
-        $this->app->when(Broker::class)
-            ->needs(BrokerCommandContract::class)
-            ->give(BrokerCommand::class);
+        $this->app->singleton(BrokerContract::class, XTB::class);
+        //
+        //        $this->app->when(XStationBroker::class)
+        //            ->needs(BrokerAuthenticationContract::class)
+        //            ->give(XStationAuthentication::class);
+        //
+        //        $this->app->when(XStationBroker::class)
+        //            ->needs(BrokerCommandContract::class)
+        //            ->give(XStationCommand::class);
+        //
+        //        $this->app->when(XStationBroker::class)
+        //            ->needs(BrokerClientContract::class)
+        //            ->give(XStationClient::class);
     }
 }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Abstracts;
+namespace App\Indicators;
 
 use App\Collections\CandleCollection;
 
-abstract class AbstractIndicator
+abstract class Indicator
 {
     protected array $config = [];
 
