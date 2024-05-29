@@ -2,7 +2,7 @@
 
 namespace App\Indicators;
 
-final class EMA extends Indicator
+final class EMA extends AbstractIndicator
 {
     protected array $config = [
         'timePeriod' => 8,

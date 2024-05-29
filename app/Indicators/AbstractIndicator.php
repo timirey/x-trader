@@ -4,7 +4,7 @@ namespace App\Indicators;
 
 use App\Collections\CandleCollection;
 
-abstract class Indicator
+abstract class AbstractIndicator
 {
     protected array $config = [];
 

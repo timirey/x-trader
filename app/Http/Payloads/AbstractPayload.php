@@ -2,6 +2,6 @@
 
 namespace App\Http\Payloads;
 
-abstract class Payload
+abstract class AbstractPayload
 {
 }

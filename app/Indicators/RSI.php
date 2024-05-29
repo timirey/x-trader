@@ -2,7 +2,7 @@
 
 namespace App\Indicators;
 
-final class RSI extends Indicator
+final class RSI extends AbstractIndicator
 {
     protected array $config = [
         'timePeriod' => 14,

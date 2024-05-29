@@ -1,11 +1,11 @@
 <?php
 
 use App\Collections\CandleCollection;
-use App\Indicators\Indicator;
+use App\Indicators\AbstractIndicator;
 
-function createBasicIndicatorClass(CandleCollection $candles, array $config = []): Indicator
+function createBasicIndicatorClass(CandleCollection $candles, array $config = []): AbstractIndicator
 {
-    return new class($candles, $config) extends Indicator
+    return new class($candles, $config) extends AbstractIndicator
     {
         protected array $config = [
             'timePeriod' => 14,
