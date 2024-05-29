@@ -1,7 +1,8 @@
 <?php
 
-use App\Brokers\Broker;
+use App\Contracts\BrokerClientContract;
 use App\Contracts\BrokerContract;
+use App\Facades\Broker;
 use App\Providers\BrokerServiceProvider;
 
 beforeEach(function () {
@@ -11,13 +12,9 @@ beforeEach(function () {
 it('registers broker service', function () {
     expect($this->app->bound(BrokerContract::class))->toBeTrue()
         ->and($this->app->make(BrokerContract::class))
-        ->toBeInstanceOf(Broker::class);
+        ->toBeInstanceOf(BrokerContract::class);
 });
-//
-//it('registers broker internal services', function () {
-//    $broker = $this->app->make(BrokerContract::class);
-//
-//    expect($broker->authenticator)->toBeInstanceOf(AbstractBrokerAuthentication::class)
-//        ->and($broker->command)->toBeInstanceOf(AbstractBrokerCommand::class)
-//        ->and($broker->client)->toBeInstanceOf(AbstractBrokerClient::class);
-//});
+
+it('registers broker internal services', function () {
+    expect(Broker::getClient())->toBeInstanceOf(BrokerClientContract::class);
+});

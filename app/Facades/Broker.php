@@ -2,9 +2,14 @@
 
 namespace App\Facades;
 
+use App\Brokers\AbstractBrokerClient;
+use App\Contracts\BrokerClientContract;
 use App\Contracts\BrokerContract;
 use Illuminate\Support\Facades\Facade;
 
+/**
+ * @method static BrokerClientContract getClient()
+ */
 class Broker extends Facade
 {
     /**

@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
-use App\Brokers\XTB;
+use App\Brokers\xStation\Broker;
+use App\Brokers\xStation\BrokerClient;
+use App\Contracts\BrokerClientContract;
 use App\Contracts\BrokerContract;
 use Illuminate\Support\ServiceProvider;
 
@@ -13,18 +15,10 @@ class BrokerServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(BrokerContract::class, XTB::class);
-        //
-        //        $this->app->when(XStationBroker::class)
-        //            ->needs(BrokerAuthenticationContract::class)
-        //            ->give(XStationAuthentication::class);
-        //
-        //        $this->app->when(XStationBroker::class)
-        //            ->needs(BrokerCommandContract::class)
-        //            ->give(XStationCommand::class);
-        //
-        //        $this->app->when(XStationBroker::class)
-        //            ->needs(BrokerClientContract::class)
-        //            ->give(XStationClient::class);
+        $this->app->singleton(BrokerContract::class, Broker::class);
+
+        $this->app->when(Broker::class)
+            ->needs(BrokerClientContract::class)
+            ->give(static fn() => new BrokerClient('wss://ws.xtb.com/demo'));
     }
 }
