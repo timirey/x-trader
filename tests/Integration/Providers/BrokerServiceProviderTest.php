@@ -1,9 +1,9 @@
 <?php
 
-use App\Contracts\BrokerClientContract;
-use App\Contracts\BrokerContract;
-use App\Facades\Broker;
-use App\Providers\BrokerServiceProvider;
+use App\Modules\Trader\Contracts\BrokerClientContract;
+use App\Modules\Trader\Contracts\BrokerContract;
+use App\Modules\Trader\Facades\Broker;
+use App\Modules\Trader\Providers\BrokerServiceProvider;
 
 beforeEach(function () {
     $this->app->register(BrokerServiceProvider::class);

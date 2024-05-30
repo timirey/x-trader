@@ -1,8 +1,8 @@
 <?php
 
-use App\Contracts\TraderContract;
-use App\Providers\TraderServiceProvider;
-use App\Services\TraderService;
+use App\Modules\Trader\Contracts\TraderContract;
+use App\Modules\Trader\Providers\TraderServiceProvider;
+use App\Modules\Trader\Services\TraderService;
 
 beforeEach(function () {
     $this->app->register(TraderServiceProvider::class);

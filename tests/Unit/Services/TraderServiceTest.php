@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\TraderService;
+use App\Modules\Trader\Services\TraderService;
 
 beforeEach(function () {
     $ohlcv = include 'tests/Fixtures/ohlcv.php';
