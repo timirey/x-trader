@@ -22,7 +22,8 @@
         "laravel/framework": "^11.0",
         "laravel/horizon": "^5.24",
         "laravel/pulse": "^1.1",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "textalk/websocket": "^1.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
