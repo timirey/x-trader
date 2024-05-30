@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\Trader\Brokers;
+namespace App\Modules\Trader\Services;
 
 use App\Modules\Trader\Contracts\BrokerClientContract;
 use Illuminate\Support\Facades\Log;
 use WebSocket\Client;
 
-class BrokerClient implements BrokerClientContract
+class BrokerClientService implements BrokerClientContract
 {
     protected Client $client;
 

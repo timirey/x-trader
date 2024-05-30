@@ -1,12 +1,12 @@
 <?php
 
-use App\Modules\Trader\Brokers\BrokerClient;
+use App\Modules\Trader\Services\BrokerClientService;
 use WebSocket\Client;
 
 test('websocket client is set correctly', function () {
     $socketUri = 'ws://example.com';
 
-    $client = new class($socketUri) extends BrokerClient
+    $client = new class($socketUri) extends BrokerClientService
     {
         public function getClient(): Client
         {

@@ -2,10 +2,10 @@
 
 namespace App\Modules\Trader\Providers;
 
-use App\Modules\Trader\Brokers\Broker;
-use App\Modules\Trader\Brokers\BrokerClient;
 use App\Modules\Trader\Contracts\BrokerClientContract;
 use App\Modules\Trader\Contracts\BrokerContract;
+use App\Modules\Trader\Services\BrokerClientService;
+use App\Modules\Trader\Services\BrokerService;
 use Illuminate\Support\ServiceProvider;
 
 class BrokerServiceProvider extends ServiceProvider
@@ -15,10 +15,10 @@ class BrokerServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        $this->app->singleton(BrokerContract::class, Broker::class);
+        $this->app->singleton(BrokerContract::class, BrokerService::class);
 
-        $this->app->when(Broker::class)
+        $this->app->when(BrokerService::class)
             ->needs(BrokerClientContract::class)
-            ->give(static fn () => new BrokerClient('wss://ws.xtb.com/demo'));
+            ->give(static fn () => new BrokerClientService('wss://ws.xtb.com/demo'));
     }
 }
