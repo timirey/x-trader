@@ -53,3 +53,7 @@ test('basic indicator config overwrite', function () {
 
     expect($config['timePeriod'])->toBe(20);
 });
+
+afterEach(function () {
+    Mockery::close();
+});

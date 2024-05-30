@@ -11,5 +11,6 @@ abstract class AbstractBrokerClient implements BrokerClientContract
 
     public function __construct(protected string $uri)
     {
+        $this->client = new Client($this->uri);
     }
 }
