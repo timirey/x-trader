@@ -15,6 +15,17 @@ abstract class AbstractPayload implements PayloadInterface
         return $this->arguments;
     }
 
+    public function toJson(): string
+    {
+        $data['command'] = $this->getCommand();
+
+        if (! empty($this->getArguments())) {
+            $data['arguments'] = $this->getArguments();
+        }
+
+        return json_encode($data);
+    }
+
     public function __toString(): string
     {
         return $this->toJson();

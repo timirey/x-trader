@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Modules\Trader\Brokers\xStation\Payloads;
+namespace App\Modules\Trader\Payloads;
 
-class BrokerLoginPayload extends AbstractBrokerPayload
+class LoginPayload extends AbstractPayload
 {
     public function __construct(string $userId, string $password)
     {

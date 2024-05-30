@@ -4,6 +4,8 @@ namespace App\Modules\Trader\Interfaces;
 
 interface PayloadInterface
 {
+    public function getCommand(): string;
+
     public function getArguments(): array;
 
     public function toJson(): string;
@@ -12,5 +14,5 @@ interface PayloadInterface
 
     public function __set(string $name, $value): void;
 
-    public function __get(string $name): mixed;
+    public function __get(string $name, $default = null): mixed;
 }
