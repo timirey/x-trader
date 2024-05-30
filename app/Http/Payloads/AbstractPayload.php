@@ -2,6 +2,31 @@
 
 namespace App\Http\Payloads;
 
-abstract class AbstractPayload
+use AllowDynamicProperties;
+use App\Interfaces\PayloadInterface;
+
+#[AllowDynamicProperties]
+abstract class AbstractPayload implements PayloadInterface
 {
+    private array $arguments = [];
+
+    public function getArguments(): array
+    {
+        return $this->arguments;
+    }
+
+    public function __toString(): string
+    {
+        return $this->toJson();
+    }
+
+    public function __set(string $name, $value): void
+    {
+        $this->arguments[$name] = $value;
+    }
+
+    public function __get(string $name, $default = null): mixed
+    {
+        return $this->arguments[$name] ?? $default;
+    }
 }
