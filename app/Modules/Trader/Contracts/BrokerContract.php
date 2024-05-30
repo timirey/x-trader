@@ -4,7 +4,6 @@ namespace App\Modules\Trader\Contracts;
 
 interface BrokerContract
 {
-    public function __construct(BrokerClientContract $client);
-
+    //todo: rename the method name to avoid duplication
     public function getClient(): BrokerClientContract;
 }

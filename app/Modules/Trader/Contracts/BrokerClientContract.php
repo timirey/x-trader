@@ -2,7 +2,10 @@
 
 namespace App\Modules\Trader\Contracts;
 
+use WebSocket\Client;
+
 interface BrokerClientContract
 {
-    public function __construct(string $uri);
+    //todo: rename the method name to avoid duplication
+    public function getClient(): Client;
 }

@@ -13,9 +13,4 @@ abstract class AbstractIndicator implements IndicatorInterface
     {
         $this->config = array_merge_recursive_distinct($this->config, $config);
     }
-
-    public function __invoke(): array
-    {
-        return $this->calculate();
-    }
 }
