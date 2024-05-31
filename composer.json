@@ -37,8 +37,8 @@
     },
     "autoload": {
         "files": [
-            "app/Modules/Trader/Helpers/services.php",
-            "app/Modules/Trader/Helpers/trading.php"
+            "helpers/services.php",
+            "helpers/instruments.php"
         ],
         "psr-4": {
             "App\\": "app/",

@@ -19,6 +19,6 @@ class BrokerServiceProvider extends ServiceProvider
 
         $this->app->when(BrokerService::class)
             ->needs(BrokerClientContract::class)
-            ->give(static fn () => new BrokerClientService('wss://ws.xtb.com/demo'));
+            ->give(static fn () => new BrokerClientService(config('broker.uri')));
     }
 }
