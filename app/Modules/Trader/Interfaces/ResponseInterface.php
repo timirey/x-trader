@@ -6,5 +6,5 @@ interface ResponseInterface
 {
     public function isSuccessful(): bool;
 
-    public static function createFromJson(string $json): static;
+    public static function createFromJson(string $json): self;
 }

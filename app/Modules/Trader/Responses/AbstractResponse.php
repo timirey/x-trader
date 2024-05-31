@@ -4,13 +4,10 @@ namespace App\Modules\Trader\Responses;
 
 use App\Modules\Trader\Interfaces\ResponseInterface;
 
-abstract class AbstractResponse implements ResponseInterface
+abstract readonly class AbstractResponse implements ResponseInterface
 {
-    private bool $status;
-
-    public function __construct(bool $status)
+    public function __construct(protected bool $status)
     {
-        $this->status = $status;
     }
 
     public function isSuccessful(): bool
@@ -18,9 +15,15 @@ abstract class AbstractResponse implements ResponseInterface
         return $this->status;
     }
 
-    public static function createFromJson(string $json): static
+    public static function createFromJson(string $json): ErrorResponse|static
     {
         $data = json_decode($json, true);
+
+        $status = $data['status'] ?? false;
+
+        if (! $status) {
+            return new ErrorResponse(...$data);
+        }
 
         return new static(...$data);
     }

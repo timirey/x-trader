@@ -36,8 +36,8 @@ abstract class AbstractPayload implements PayloadInterface
         $this->arguments[$name] = $value;
     }
 
-    public function __get(string $name, $default = null): mixed
+    public function __get(string $name): mixed
     {
-        return $this->arguments[$name] ?? $default;
+        return $this->arguments[$name];
     }
 }
