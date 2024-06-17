@@ -15,7 +15,7 @@ class BrokerClientService implements BrokerClientContract
 {
     protected Client $client;
 
-    private LoginPayload $loginPayload;
+    private LoginPayload|string $loginPayload;
 
     public function __construct(protected string $uri, protected string $userId, protected string $password)
     {
