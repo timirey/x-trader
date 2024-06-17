@@ -3,11 +3,6 @@
 use App\Modules\Trader\Contracts\BrokerClientContract;
 use App\Modules\Trader\Contracts\BrokerContract;
 use App\Modules\Trader\Facades\Broker;
-use App\Modules\Trader\Providers\BrokerServiceProvider;
-
-beforeEach(function () {
-    $this->app->register(BrokerServiceProvider::class);
-});
 
 it('registers broker service', function () {
     expect($this->app->bound(BrokerContract::class))->toBeTrue()

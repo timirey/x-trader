@@ -3,7 +3,7 @@
 use App\Modules\Trader\Services\BrokerClientService;
 use WebSocket\Client;
 
-test('websocket client is set correctly', function () {
+it('initializes websocket client', function () {
     $socketUri = 'ws://example.com';
 
     $client = new class($socketUri, 'userId', 'password') extends BrokerClientService
