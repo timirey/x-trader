@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Modules\Trader\Services;
 
+use App\Modules\Trader\Configs\BrokerClientConfig;
 use App\Modules\Trader\Contracts\BrokerClientContract;
 use App\Modules\Trader\Interfaces\ResponseInterface;
 use App\Modules\Trader\Payloads\LoginPayload;
@@ -17,10 +18,10 @@ class BrokerClientService implements BrokerClientContract
 
     private LoginPayload|string $loginPayload;
 
-    public function __construct(protected string $uri, protected string $userId, protected string $password)
+    public function __construct(protected BrokerClientConfig $config)
     {
-        $this->client = new Client($this->uri);
-        $this->loginPayload = new LoginPayload($this->userId, $this->password);
+        $this->client = new Client($config->uri);
+        $this->loginPayload = new LoginPayload($config->userId, $config->password);
     }
 
     public function getClient(): Client

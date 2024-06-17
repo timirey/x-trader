@@ -1,5 +1,9 @@
 # Release Notes
 
+## [0.5.2](https://github.com/timirey/x-trader/compare/0.5.1...0.5.2) - 2024-06-17
+
+* [See issue #49](https://github.com/timirey/x-trader/issues/49)
+
 ## [0.5.1](https://github.com/timirey/x-trader/compare/0.5.0...0.5.1) - 2024-06-17
 
 * [See issue #46](https://github.com/timirey/x-trader/issues/46)
