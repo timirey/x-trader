@@ -15,10 +15,10 @@ class BrokerClientService implements BrokerClientContract
 
     private LoginPayload $loginPayload;
 
-    public function __construct(protected string $uri)
+    public function __construct(protected string $uri, protected string $userId, protected string $password)
     {
         $this->client = new Client($this->uri);
-        $this->loginPayload = new LoginPayload(config('broker.user_id'), config('broker.password'));
+        $this->loginPayload = new LoginPayload($this->userId, $this->password);
     }
 
     public function getClient(): Client
