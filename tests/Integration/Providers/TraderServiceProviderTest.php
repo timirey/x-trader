@@ -1,15 +1,12 @@
 <?php
 
-use App\Contracts\TraderContract;
-use App\Providers\TraderServiceProvider;
-use App\Services\Trader;
+declare(strict_types=1);
 
-beforeEach(function () {
-    $this->app->register(TraderServiceProvider::class);
-});
+use App\Modules\Trader\Contracts\TraderContract;
+use App\Modules\Trader\Services\TraderService;
 
 it('registers trader service', function () {
     expect($this->app->bound(TraderContract::class))->toBeTrue()
         ->and($this->app->make(TraderContract::class))
-        ->toBeInstanceOf(Trader::class);
+        ->toBeInstanceOf(TraderService::class);
 });

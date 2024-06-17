@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Kicking - bull/bear determined by the longer marubozu
  *
