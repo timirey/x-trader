@@ -163,21 +163,16 @@
                             Container</a>.
                         </p>
                         <div class="rounded bg-gray-100 overflow-x-auto p-2 text-sm mt-3">
-<pre><code>class BrokerServiceProvider extends ServiceProvider
-{
-    public function register(): void
-    {
-        $this->app->singleton(BrokerContract::class, BrokerService::class);
-
-        $this->app->when(BrokerService::class)
-            ->needs(BrokerClientContract::class)
-            ->give(static fn () => new BrokerClientService(config('broker.uri'), config('broker.user_id'), config('broker.password')));
-    }
-}
+<pre><code>$this->app->when(BrokerService::class)
+    ->needs(BrokerClientContract::class)
+    ->give(static fn($app) => new BrokerClientService(
+        $app->make(BrokerClientConfig::class))
+    );
 </code></pre>
                         </div>
                         <p class="text-sm text-gray-700 mt-3">
-                            Implementations are situated in <span class="text-[#ea3c2d]">app/Modules/Trader/Providers</span>
+                            Implementations are situated in <span
+                            class="text-[#ea3c2d]">app/Modules/Trader/Providers</span>
                             folder.</br></br>
                             Default broker is <a href="https://www.xtb.com" class="text-[#ea3c2d]">xStation</a>, which
                             works out of the box.
@@ -195,13 +190,15 @@
                     <p class="text-xl"><span class="text-[#ea3c2d]">#</span> Directory Structure</p>
                     <p class="text-sm text-gray-700">The <a
                         href="https://laravel.com/docs/11.x/structure" class="text-[#ea3c2d]">Laravel Skeleton</a> is
-                        kept as provided out of the box. Below, the custom folders and their purposes are specified. <br/><br/>Prefixed with <span class="text-[#ea3c2d]">App/Modules</span>.</p>
+                        kept as provided out of the box. Below, the custom folders and their purposes are specified.
+                        <br/><br/>Prefixed with <span class="text-[#ea3c2d]">App/Modules</span>.</p>
 
                     <!-- Link 1.3.1 Start -->
                     <section id="link1_3_1" class="border-l-[2px] pl-[20px] mb-[15px]">
                         <div class="h-full mt-3">
                             <p>Trader/Collections</p>
-                            <p class="text-sm text-gray-700">Manages and manipulates data chunks within Laravel applications.</p>
+                            <p class="text-sm text-gray-700">Manages and manipulates data chunks within Laravel
+                                applications.</p>
                         </div>
                     </section>
                     <!-- Link 1.3.1 End -->
@@ -273,7 +270,8 @@
                     <section id="link1_3_9" class="border-l-[2px] pl-[20px] mb-[15px]">
                         <div class="h-full mt-3">
                             <p>Trader/Services</p>
-                            <p class="text-sm text-gray-700">Concrete classes for service container binding and features.</p>
+                            <p class="text-sm text-gray-700">Concrete classes for service container binding and
+                                features.</p>
                         </div>
                     </section>
                     <!-- Link 1.3.9 End -->
