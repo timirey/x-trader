@@ -1,7 +1,9 @@
 <?php
 
-use App\Abstracts\AbstractIndicator;
-use App\Collections\CandleCollection;
+declare(strict_types=1);
+
+use App\Modules\Trader\Collections\CandleCollection;
+use App\Modules\Trader\Indicators\AbstractIndicator;
 
 function createBasicIndicatorClass(CandleCollection $candles, array $config = []): AbstractIndicator
 {
@@ -52,4 +54,8 @@ test('basic indicator config overwrite', function () {
     $config = $property->getValue($indicator);
 
     expect($config['timePeriod'])->toBe(20);
+});
+
+afterEach(function () {
+    Mockery::close();
 });

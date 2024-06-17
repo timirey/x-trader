@@ -3,10 +3,10 @@
     "type": "project",
     "description": "Laravel application template for creating and executing algorithmic trading strategies, allowing users to automate their trading decisions based on customizable rules and conditions.",
     "keywords": [
-        "php", 
-        "laravel", 
-        "trading-bot", 
-        "algoritmic-trading", 
+        "php",
+        "laravel",
+        "trading-bot",
+        "algoritmic-trading",
         "automated-trading-system"
     ],
     "license": "MIT",
@@ -22,7 +22,8 @@
         "laravel/framework": "^11.0",
         "laravel/horizon": "^5.24",
         "laravel/pulse": "^1.1",
-        "laravel/tinker": "^2.9"
+        "laravel/tinker": "^2.9",
+        "textalk/websocket": "^1.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -36,7 +37,8 @@
     },
     "autoload": {
         "files": [
-            "bootstrap/helpers.php"
+            "helpers/services.php",
+            "helpers/instruments.php"
         ],
         "psr-4": {
             "App\\": "app/",
