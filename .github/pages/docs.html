@@ -163,33 +163,21 @@
                             Container</a>.
                         </p>
                         <div class="rounded bg-gray-100 overflow-x-auto p-2 text-sm mt-3">
-<pre><code>use App\Contracts\BrokerAuthenticationContract;
-use App\Contracts\BrokerCommandContract;
-use App\Contracts\BrokerContract;
-use App\Services\Brokers\xStation\Broker;
-use App\Services\Brokers\xStation\BrokerAuthentication;
-use App\Services\Brokers\xStation\BrokerCommand;
-use Illuminate\Support\ServiceProvider;
-
-class BrokerServiceProvider extends ServiceProvider
+<pre><code>class BrokerServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->singleton(BrokerContract::class, Broker::class);
+        $this->app->singleton(BrokerContract::class, BrokerService::class);
 
-        $this->app->when(Broker::class)
-            ->needs(BrokerAuthenticationContract::class)
-            ->give(BrokerAuthentication::class);
-
-        $this->app->when(Broker::class)
-            ->needs(BrokerCommandContract::class)
-            ->give(BrokerCommand::class);
+        $this->app->when(BrokerService::class)
+            ->needs(BrokerClientContract::class)
+            ->give(static fn () => new BrokerClientService(config('broker.uri'), config('broker.user_id'), config('broker.password')));
     }
 }
 </code></pre>
                         </div>
                         <p class="text-sm text-gray-700 mt-3">
-                            Implementations are situated in <span class="text-[#ea3c2d]">app/Services/Brokers</span>
+                            Implementations are situated in <span class="text-[#ea3c2d]">app/Modules/Trader/Providers</span>
                             folder.</br></br>
                             Default broker is <a href="https://www.xtb.com" class="text-[#ea3c2d]">xStation</a>, which
                             works out of the box.
@@ -207,14 +195,13 @@ class BrokerServiceProvider extends ServiceProvider
                     <p class="text-xl"><span class="text-[#ea3c2d]">#</span> Directory Structure</p>
                     <p class="text-sm text-gray-700">The <a
                         href="https://laravel.com/docs/11.x/structure" class="text-[#ea3c2d]">Laravel Skeleton</a> is
-                        kept as provided out of the box. Below, the custom folders and their purposes are specified.</p>
+                        kept as provided out of the box. Below, the custom folders and their purposes are specified. <br/><br/>Prefixed with <span class="text-[#ea3c2d]">App/Modules</span>.</p>
 
                     <!-- Link 1.3.1 Start -->
                     <section id="link1_3_1" class="border-l-[2px] pl-[20px] mb-[15px]">
                         <div class="h-full mt-3">
-                            <p>app/Abstracts</p>
-                            <p class="text-sm text-gray-700">Contains partially implemented classes that
-                                serve as base classes for other components.</p>
+                            <p>Trader/Collections</p>
+                            <p class="text-sm text-gray-700">Manages and manipulates data chunks within Laravel applications.</p>
                         </div>
                     </section>
                     <!-- Link 1.3.1 End -->
@@ -222,9 +209,8 @@ class BrokerServiceProvider extends ServiceProvider
                     <!-- Link 1.3.2 Start -->
                     <section id="link1_3_2" class="border-l-[2px] pl-[20px] mb-[15px]">
                         <div class="h-full mt-3">
-                            <p>app/Collections</p>
-                            <p class="text-sm text-gray-700">Manages data chunks within Laravel, providing
-                                utilities for data manipulation and handling.</p>
+                            <p>Trader/Contracts</p>
+                            <p class="text-sm text-gray-700">Defines interfaces resolved within service providers.</p>
                         </div>
                     </section>
                     <!-- Link 1.3.2 End -->
@@ -232,9 +218,8 @@ class BrokerServiceProvider extends ServiceProvider
                     <!-- Link 1.3.3 Start -->
                     <section id="link1_3_3" class="border-l-[2px] pl-[20px] mb-[15px]">
                         <div class="h-full mt-3">
-                            <p>app/Contracts</p>
-                            <p class="text-sm text-gray-700">Holds interface definitions that are typically
-                                resolved within service providers.</p>
+                            <p>Trader/Facades</p>
+                            <p class="text-sm text-gray-700">Offers a static interface to service container classes.</p>
                         </div>
                     </section>
                     <!-- Link 1.3.3 End -->
@@ -242,9 +227,8 @@ class BrokerServiceProvider extends ServiceProvider
                     <!-- Link 1.3.4 Start -->
                     <section id="link1_3_4" class="border-l-[2px] pl-[20px]">
                         <div class="h-full mt-3">
-                            <p>app/Facades</p>
-                            <p class="text-sm text-gray-700">Provides a static interface to classes that
-                                are available in the application's service container.</p>
+                            <p>Trader/Indicators</p>
+                            <p class="text-sm text-gray-700">Implements indicators like RSI, EMA, and SMA.</p>
                         </div>
                     </section>
                     <!-- Link 1.3.4 End -->
@@ -252,12 +236,47 @@ class BrokerServiceProvider extends ServiceProvider
                     <!-- Link 1.3.5 Start -->
                     <section id="link1_3_5" class="border-l-[2px] pl-[20px] mb-[15px]">
                         <div class="h-full mt-3">
-                            <p>app/Services</p>
-                            <p class="text-sm text-gray-700">Contains concrete classes that are often used
-                                for binding in the service container.</p>
+                            <p>Trader/Interfaces</p>
+                            <p class="text-sm text-gray-700">Defines interfaces used across the application.</p>
                         </div>
                     </section>
                     <!-- Link 1.3.5 End -->
+
+                    <!-- Link 1.3.6 Start -->
+                    <section id="link1_3_6" class="border-l-[2px] pl-[20px] mb-[15px]">
+                        <div class="h-full mt-3">
+                            <p>Trader/Payloads</p>
+                            <p class="text-sm text-gray-700">Defines request payloads sent via WebSocket.</p>
+                        </div>
+                    </section>
+                    <!-- Link 1.3.6 End -->
+
+                    <!-- Link 1.3.7 Start -->
+                    <section id="link1_3_7" class="border-l-[2px] pl-[20px] mb-[15px]">
+                        <div class="h-full mt-3">
+                            <p>Trader/Providers</p>
+                            <p class="text-sm text-gray-700">Custom Laravel service providers.</p>
+                        </div>
+                    </section>
+                    <!-- Link 1.3.7 End -->
+
+                    <!-- Link 1.3.8 Start -->
+                    <section id="link1_3_8" class="border-l-[2px] pl-[20px] mb-[15px]">
+                        <div class="h-full mt-3">
+                            <p>Trader/Responses</p>
+                            <p class="text-sm text-gray-700">Defines response objects from WebSocket clients.</p>
+                        </div>
+                    </section>
+                    <!-- Link 1.3.8 End -->
+
+                    <!-- Link 1.3.9 Start -->
+                    <section id="link1_3_9" class="border-l-[2px] pl-[20px] mb-[15px]">
+                        <div class="h-full mt-3">
+                            <p>Trader/Services</p>
+                            <p class="text-sm text-gray-700">Concrete classes for service container binding and features.</p>
+                        </div>
+                    </section>
+                    <!-- Link 1.3.9 End -->
 
                 </div>
             </section>

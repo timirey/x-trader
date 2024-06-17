@@ -1,5 +1,18 @@
 # Release Notes
 
+## [0.5.1](https://github.com/timirey/x-trader/compare/0.5.0...0.5.1) - 2024-06-17
+
+* [See issue #46](https://github.com/timirey/x-trader/issues/46)
+
+## [0.5.0](https://github.com/timirey/x-trader/compare/0.4.1...0.5.0) - 2024-06-17
+
+* Redefined folder structure.
+* Enabled strict types.
+* Improved abstractions.
+* Added responses and payloads.
+* Settled broker authentication client service.
+* Added environment for XTB broker.
+
 ## [0.4.1](https://github.com/timirey/x-trader/compare/0.4.0...0.4.1) - 2024-05-28
 
 * Fixed few docs mistakes: https://timirey.github.io/x-trader/docs.
