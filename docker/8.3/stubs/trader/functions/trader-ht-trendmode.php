@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Hilbert Transform - Trend vs Cycle Mode
  *

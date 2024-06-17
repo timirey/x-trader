@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Modules\Trader\Collections\CandleCollection;
 use App\Modules\Trader\Indicators\AbstractIndicator;
 

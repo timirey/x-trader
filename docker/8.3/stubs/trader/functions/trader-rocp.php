@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * Rate of change Percentage: (price-prevPrice)/prevPrice
  *

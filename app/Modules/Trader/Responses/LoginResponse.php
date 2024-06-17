@@ -1,8 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Modules\Trader\Responses;
 
-readonly class LoginResponse extends AbstractResponse
+readonly class LoginResponse extends Response
 {
     public function __construct(bool $status, protected string $streamSessionId)
     {

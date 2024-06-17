@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /**
  * 1-day Rate-Of-Change (ROC) of a Triple Smooth EMA
  *

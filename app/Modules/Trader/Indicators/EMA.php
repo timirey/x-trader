@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Modules\Trader\Indicators;
 
 final class EMA extends AbstractIndicator
