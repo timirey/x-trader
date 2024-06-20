@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 define('TRADER_MA_TYPE_SMA', 0);
 define('TRADER_MA_TYPE_EMA', 0);
 define('TRADER_MA_TYPE_WMA', 0);
