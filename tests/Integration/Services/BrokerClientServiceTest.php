@@ -7,26 +7,12 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use WebSocket\Client;
 
-it('initializes websocket client', function () {
-    $config = new class('ws://example.com', 'userId', 'password') extends BrokerClientConfig
-    {
-    };
-
-    $client = new class($config) extends BrokerClientService
-    {
-        public function getClient(): Client
-        {
-            return $this->client;
-        }
-    };
-
-    $socketClient = $client->getClient();
-
-    expect($socketClient)->toBeInstanceOf(Client::class);
-});
-
-it('authenticates and gets client correctly', function () {
-    Config::set(include 'tests/Fixtures/broker.php');
+it('initializes, authenticates the client correctly', function () {
+    Config::set([
+        'broker.uri' => 'ws://fake-uri',
+        'broker.user_id' => 'fake-user-id',
+        'broker.password' => 'fake-password',
+    ]);
 
     $loginPayload = new LoginPayload(config('broker.user_id'), config('broker.password'));
 
