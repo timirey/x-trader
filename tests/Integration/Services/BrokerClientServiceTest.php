@@ -26,7 +26,7 @@ it('initializes websocket client', function () {
 });
 
 it('authenticates and gets client correctly', function () {
-    Config::set(include 'tests/Fixtures/broker_client.php');
+    Config::set(include 'tests/Fixtures/broker.php');
 
     $loginPayload = new LoginPayload(config('broker.user_id'), config('broker.password'));
 

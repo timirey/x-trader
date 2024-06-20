@@ -6,7 +6,7 @@ use App\Modules\Trader\Services\BrokerService;
 use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {
-    Config::set(include 'tests/Fixtures/broker_client.php');
+    Config::set(include 'tests/Fixtures/broker.php');
 });
 
 it('registers broker services correctly', function () {
