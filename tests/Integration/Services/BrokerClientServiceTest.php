@@ -42,6 +42,7 @@ it('authenticates and gets client correctly', function () {
         ->with($loginPayload->toJson());
 
     $clientMock->shouldReceive('receive')
+        ->once()
         ->andReturn(json_encode([
             'status' => true,
             'streamSessionId' => Str::random(32),
