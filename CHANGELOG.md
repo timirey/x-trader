@@ -1,5 +1,12 @@
 # Release Notes
 
+## [0.6.0](https://github.com/timirey/x-trader/compare/0.5.2...0.6.0) - 2024-06-20
+
+* Refactor integration and unit tests.
+* Disable strict types check.
+* Added more tests for Broker Client.
+* [See issue #44](https://github.com/timirey/x-trader/issues/44)
+
 ## [0.5.2](https://github.com/timirey/x-trader/compare/0.5.1...0.5.2) - 2024-06-17
 
 * [See issue #49](https://github.com/timirey/x-trader/issues/49)

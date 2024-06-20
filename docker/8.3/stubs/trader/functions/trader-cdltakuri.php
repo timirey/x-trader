@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Takuri (Dragonfly Doji with very long lower shadow)
  *

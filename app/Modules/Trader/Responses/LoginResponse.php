@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Modules\Trader\Responses;
 
 readonly class LoginResponse extends Response

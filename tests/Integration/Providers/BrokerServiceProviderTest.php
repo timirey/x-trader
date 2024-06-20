@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Modules\Trader\Contracts\BrokerClientContract;
 use App\Modules\Trader\Contracts\BrokerContract;
 use App\Modules\Trader\Facades\Broker;
