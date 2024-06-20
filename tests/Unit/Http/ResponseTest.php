@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Modules\Trader\Responses\Response;
 
 it('returns error code correctly', function () {

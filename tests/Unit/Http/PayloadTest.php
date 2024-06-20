@@ -1,10 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Modules\Trader\Payloads\AbstractPayload;
 
 it('initially has no arguments', function () {
-    $payload = new class extends AbstractPayload {
-        public function getCommand(): string {
+    $payload = new class extends AbstractPayload
+    {
+        public function getCommand(): string
+        {
             return 'testCommand';
         }
     };
@@ -13,8 +17,10 @@ it('initially has no arguments', function () {
 });
 
 it('returns correct json when no arguments are set', function () {
-    $payload = new class extends AbstractPayload {
-        public function getCommand(): string {
+    $payload = new class extends AbstractPayload
+    {
+        public function getCommand(): string
+        {
             return 'testCommand';
         }
     };
@@ -24,8 +30,10 @@ it('returns correct json when no arguments are set', function () {
 });
 
 it('returns correct json when arguments are set', function () {
-    $payload = new class extends AbstractPayload {
-        public function getCommand(): string {
+    $payload = new class extends AbstractPayload
+    {
+        public function getCommand(): string
+        {
             return 'testCommand';
         }
     };
@@ -44,8 +52,10 @@ it('returns correct json when arguments are set', function () {
 });
 
 it('toString returns same output as toJson', function () {
-    $payload = new class extends AbstractPayload {
-        public function getCommand(): string {
+    $payload = new class extends AbstractPayload
+    {
+        public function getCommand(): string
+        {
             return 'testCommand';
         }
     };
@@ -53,12 +63,14 @@ it('toString returns same output as toJson', function () {
     $payload->argument1 = 'value1';
     $payload->argument2 = 'value2';
 
-    expect((string)$payload)->toBe($payload->toJson());
+    expect((string) $payload)->toBe($payload->toJson());
 });
 
 it('sets and gets dynamic properties correctly', function () {
-    $payload = new class extends AbstractPayload {
-        public function getCommand(): string {
+    $payload = new class extends AbstractPayload
+    {
+        public function getCommand(): string
+        {
             return 'testCommand';
         }
     };
