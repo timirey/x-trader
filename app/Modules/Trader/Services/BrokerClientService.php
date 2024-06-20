@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace App\Modules\Trader\Services;
 
 use App\Modules\Trader\Configs\BrokerClientConfig;
@@ -16,7 +14,7 @@ class BrokerClientService implements BrokerClientContract
 {
     protected Client $client;
 
-    private LoginPayload|string $loginPayload;
+    private LoginPayload $loginPayload;
 
     public function __construct(protected BrokerClientConfig $config)
     {

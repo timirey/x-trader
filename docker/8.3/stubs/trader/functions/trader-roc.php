@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 /**
  * Rate of change : ((price/prevPrice)-1)*100
  *

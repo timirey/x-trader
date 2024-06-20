@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 use App\Modules\Trader\Contracts\TraderContract;
 use App\Modules\Trader\Services\TraderService;
 
