@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 it('returns false when x is empty', function () {
     $x = [];
     $y = [1, 2, 3];
