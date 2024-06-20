@@ -26,9 +26,7 @@ it('initializes websocket client', function () {
 });
 
 it('authenticates and gets client correctly', function () {
-    Config::set('broker.uri', 'ws://fake-uri');
-    Config::set('broker.user_id', 'fake-user-id');
-    Config::set('broker.password', 'fake-password');
+    Config::set(include 'tests/Fixtures/broker_client.php');
 
     $loginPayload = new LoginPayload(config('broker.user_id'), config('broker.password'));
 

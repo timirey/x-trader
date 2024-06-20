@@ -6,9 +6,7 @@ use App\Modules\Trader\Services\BrokerService;
 use Illuminate\Support\Facades\Config;
 
 beforeEach(function () {
-    Config::set('broker.uri', 'ws://fake-uri');
-    Config::set('broker.user_id', 'fake-user-id');
-    Config::set('broker.password', 'fake-password');
+    Config::set(include 'tests/Fixtures/broker_client.php');
 });
 
 it('registers broker services correctly', function () {
