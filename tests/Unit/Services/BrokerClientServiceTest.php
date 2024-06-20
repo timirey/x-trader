@@ -2,13 +2,8 @@
 
 use App\Modules\Trader\Configs\BrokerClientConfig;
 use App\Modules\Trader\Contracts\BrokerContract;
-use App\Modules\Trader\Payloads\LoginPayload;
-use App\Modules\Trader\Providers\BrokerServiceProvider;
-use App\Modules\Trader\Services\BrokerClientService;
 use App\Modules\Trader\Services\BrokerService;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Str;
-use WebSocket\Client;
 
 beforeEach(function () {
     Config::set('broker.uri', 'ws://fake-uri');

@@ -44,15 +44,17 @@ it('authenticates and gets client correctly', function () {
     $clientMock->shouldReceive('receive')
         ->andReturn(json_encode([
             'status' => true,
-            'streamSessionId' => Str::random(32)
+            'streamSessionId' => Str::random(32),
         ]));
 
     $this->app->instance(Client::class, $clientMock);
 
     $brokerClientConfig = $this->app->make(BrokerClientConfig::class);
 
-    $brokerClientService = new class($brokerClientConfig, $clientMock) extends BrokerClientService {
-        public function __construct(BrokerClientConfig $config, Client $client) {
+    $brokerClientService = new class($brokerClientConfig, $clientMock) extends BrokerClientService
+    {
+        public function __construct(BrokerClientConfig $config, Client $client)
+        {
             parent::__construct($config);
 
             $this->client = $client;
